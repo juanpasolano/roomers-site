@@ -22,8 +22,8 @@ class CreateProductsTable extends Migration {
 			$table->string('price');
 			$table->string('discount');
 			// $table->integer('category');
-			$table->integer('collection');
-			$table->integer('tax');
+			$table->integer('collection_id');
+			$table->integer('tax_id');
 			$table->integer('premium');
 			$table->integer('published');
 

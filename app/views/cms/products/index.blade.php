@@ -13,8 +13,8 @@
 				<td>Price</td>
 				<td>Discount</td>
 				<!-- <td>Tax</td> -->
-				<td>Category</td>
 				<td>Collection</td>
+				<td>Categories</td>
 				<td>Premium</td>
 			</tr>
 		</thead>
@@ -28,8 +28,8 @@
 						<td>{{$product->price}}</td>
 						<td>{{$product->discount}}</td>
 						<!-- <td>{{$product->tax}}</td> -->
-						<td>{{$product->category}}</td>
-						<td>{{$product->collection}}</td>
+						<td>{{$product->collection->name}}</td>
+						<td>@foreach($product->categories as $cat) <span class="label">{{$cat->name}}</span>  @endforeach</td>
 
 
 						<td>

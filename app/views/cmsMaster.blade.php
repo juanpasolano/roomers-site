@@ -17,14 +17,11 @@
 	<!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	<script type="text/javascript" src="js/jquery-1.9.0.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css"> -->
+<link href="{{asset('vendor/select2/select2.css');}}" rel="stylesheet">
+<link href="{{asset('vendor/switch/bootstrap-switch.css');}}" rel="stylesheet">
 
 </head>
 <body>
- <div class="container">
-
- </div>
-
-
 
 <div class="container" style="margin-top:30px;">
 	<div class="row">
@@ -32,11 +29,6 @@
 			<ul class="nav nav-list bs-docs-sidenav affix-top">
           <li><a href="{{URL::to('cms/products')}}"><i class="icon-chevron-right"></i> Products</a></li>
           <li><a href="{{URL::to('cms/customers')}}"><i class="icon-chevron-right"></i> Customers</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Tables</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Forms</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Buttons</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Images</a></li>
-          <li><a href="#"><i class="icon-chevron-right"></i> Icons by Glyphicons</a></li>
         </ul>
 		</div>
 		<div class="span9">@yield('content')</div>
@@ -44,21 +36,10 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script src="http://codeorigin.jquery.com/jquery-git2.min.js"></script>
  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script src="{{asset('vendor/select2/select2.min.js');}}"></script>
+<script src="{{asset('vendor/switch/bootstrap-switch.min.js');}}"></script>
+<script src="{{asset('js/cmsRoomers.js');}}"></script>
 </body>
 </html>

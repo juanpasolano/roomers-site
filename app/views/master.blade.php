@@ -25,6 +25,7 @@ hello from master
 	@yield('content')
  </div>
 
+
 <script src="http://codeorigin.jquery.com/jquery-git2.min.js"></script>
  <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
 </body>

@@ -22,7 +22,9 @@ class ProductsController extends \BaseController {
 	 */
 	public function create()
 	{
-		return \View::make('cms.products.create');
+		$categories = \Category::all();
+		$collections = \Collection::all();
+		return \View::make('cms.products.create', array('categories'=> $categories, 'collections' => $collections));
 
 	}
 
@@ -33,8 +35,25 @@ class ProductsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$product =  new \Product(\Input::all());
+
+
+		// $file = \Input::file('image');
+		// dd($file);
+		// $destinationPath = 'uploads/products/';
+		// $filename = $file->getClientOriginalName();
+		// $uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
+
+		// if( $uploadSuccess ) {
+		//    return \Response::json('success', 200);
+		// } else {
+		//    return \Response::json('error', 400);
+		// }
+		$productData = \Input::all();
+		unset($productData['categories']);
+		$product =  new \Product($productData);
+		$product->categories = \Input::get('categories');
 		$product->save();
+		return \Response::json($product, 200);
 	}
 
 	/**
@@ -45,7 +64,7 @@ class ProductsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$product = \Product::with('category')->get()->find($id);
+		$product = \Product::with('categories', 'collection')->get()->find($id);
 		return \Response::json($product);
 	}
 

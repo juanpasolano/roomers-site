@@ -20,6 +20,12 @@ class CategoryProductTableSeeder extends Seeder {
 			1 =>
 			array (
 				'id' => 2,
+				'product_id' => 1,
+				'category_id' => 2
+			),
+			2 =>
+			array (
+				'id' => 3,
 				'product_id' => 2,
 				'category_id' => 1
 			),

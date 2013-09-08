@@ -22,7 +22,8 @@ Route::get('/', function(){
 Route::get('getSeedsFromTable', function(){
 	// \Iseed::generateSeed('addresses');
 	// \Iseed::generateSeed('orders');
-	\Iseed::generateSeed('product_category');
+	// \Iseed::generateSeed('product_category');
+	\Iseed::generateSeed('collections');
 });
 
 
@@ -40,3 +41,5 @@ Route::resource('addresses', 'AddressesController');
 Route::resource('orders', 'OrdersController');
 
 Route::resource('categories', 'CategoriesController');
+
+Route::resource('collections', 'CollectionsController');

@@ -22,7 +22,7 @@ class CategoriesTableSeeder extends Seeder {
 			1 =>
 			array (
 				'id' => 2,
-				'name' => 'furniture',
+				'name' => 'Furniture',
 				'description' => 'Uniquely recaptiualize out-of-the-box mindshare with sustainable innovation. Continually actualize strategic data through performance based outsourcing. Collaboratively initiate transparent e-markets after innovative services. Objectively revolutionize fu',
 				'created_at' => new DateTime,
 				'updated_at' => new DateTime,

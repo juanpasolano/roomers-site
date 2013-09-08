@@ -4,7 +4,8 @@
 
 	Create a new product
 
-	{{ Form::open(array('route' => 'cms.products.store')) }}
+
+	{{ Form::open(array('route' => 'cms.products.store', 'id'=>'createProductForm', 'files' => true)) }}
 	<ul>
 		<li>
 			{{ Form::label('name', 'Name:') }}
@@ -18,7 +19,7 @@
 
 		<li>
 			{{ Form::label('image', 'Image:') }}
-			{{ Form::text('image') }}
+			<input type="file" name="image" id="">
 		</li>
 
 		<li>
@@ -33,27 +34,41 @@
 
 		<li>
 			{{ Form::label('category', 'Category:') }}
-			{{ Form::text('category') }}
+			<!-- {{ Form::select('categories', $categories) }} -->
+			<select class="select selectMultiple" id="categories" name="categories" multiple="multiple">
+				@foreach ($categories as $cat)
+					<option value="{{$cat->id}}">{{$cat->name}}</option>
+				@endforeach
+			</select>
 		</li>
 
 		<li>
-			{{ Form::label('collection', 'Collection:') }}
-			{{ Form::text('collection') }}
+			{{ Form::label('collection_id', 'Collection:') }}
+
+			<select class="select selectMultiple" id="collection_id" name="collection_id">
+				@foreach ($collections as $coll)
+					<option value="{{$coll->id}}">{{$coll->name}}</option>
+				@endforeach
+			</select>
 		</li>
 
 		<li>
-			{{ Form::label('tax', 'Tax:') }}
-			{{ Form::text('tax') }}
+			{{ Form::label('tax_id', 'Tax:') }}
+			{{ Form::text('tax_id') }}
 		</li>
 
 		<li>
 			{{ Form::label('premium', 'Premium:') }}
-			{{ Form::text('premium') }}
+			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
+			    <input type="checkbox"  checked="checked" name="premium">
+			</div>
 		</li>
 
 		<li>
 			{{ Form::label('published', 'Published:') }}
-			{{ Form::text('published') }}
+			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
+			    <input type="checkbox"  checked="checked" name="published">
+			</div>
 		</li>
 
 		<li>
