@@ -13,7 +13,10 @@
 	<meta name="robots" content="index, follow">
 	<meta name="revisit-after" content="1 month">
 	<title></title>
-<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+
+<link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet"> -->
+
 	<!-- <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
 	<script type="text/javascript" src="js/jquery-1.9.0.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css"> -->
@@ -26,10 +29,22 @@
 <div class="container" style="margin-top:30px;">
 	<div class="row">
 		<div class="span3">
-			<ul class="nav nav-list bs-docs-sidenav affix-top">
-          <li><a href="{{URL::to('cms/products')}}"><i class="icon-chevron-right"></i> Products</a></li>
-          <li><a href="{{URL::to('cms/customers')}}"><i class="icon-chevron-right"></i> Customers</a></li>
-        </ul>
+			<div class="well">
+				<ul class="nav nav-list">
+				  <li class="nav-header">Admin Products</li>
+					<li><a href="{{URL::to('cms/products')}}">Products</a></li>
+					<li><a href="{{URL::to('cms/collections')}}">Collections</a></li>
+					<li><a href="{{URL::to('cms/categories')}}">Categories</a></li>
+					<li><a href="{{URL::to('cms/taxes')}}">Taxes</a></li>
+				  <li class="nav-header">Customers and orders</li>
+					<li><a href="{{URL::to('cms/customers')}}">Customers</a></li>
+				  <li class="nav-header">Configurations</li>
+					<li><a href="{{URL::to('cms/taxes')}}">Taxes</a></li>
+					<ul>
+						<li><a href="">Jmmm</a></li>
+					</ul>
+				</ul>
+			</div>
 		</div>
 		<div class="span9">@yield('content')</div>
 	</div>

@@ -19,17 +19,20 @@ Route::get('/', function(){
 // 	return link_to('/users', 'Users');
 // }]);
 
-Route::get('getSeedsFromTable', function(){
+Route::get('getSeeds', function(){
 	// \Iseed::generateSeed('addresses');
 	// \Iseed::generateSeed('orders');
 	// \Iseed::generateSeed('product_category');
-	\Iseed::generateSeed('collections');
+	\Iseed::generateSeed('taxes');
 });
 
 
 Route::get('cms/customers/{id}/orders', '\cms\CustomersController@getOrders');
 Route::resource('cms/customers', '\cms\CustomersController');
 Route::resource('cms/products', '\cms\ProductsController');
+Route::resource('cms/collections', '\cms\CollectionsController');
+Route::resource('cms/categories', '\cms\CategoriesController');
+Route::resource('cms/taxes', '\cms\TaxesController');
 
 
 Route::resource('products', 'Products');
@@ -43,3 +46,5 @@ Route::resource('orders', 'OrdersController');
 Route::resource('categories', 'CategoriesController');
 
 Route::resource('collections', 'CollectionsController');
+
+Route::resource('taxes', 'TaxesController');

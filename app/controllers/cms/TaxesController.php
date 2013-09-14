@@ -1,6 +1,8 @@
 <?php
+
 namespace cms;
-class CollectionsController extends \BaseController {
+
+class TaxesController extends \BaseController {
 
 	/**
 	 * Display a listing of the resource.
@@ -9,8 +11,8 @@ class CollectionsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$collections = \Collection::all();
-		return \View::make('cms.collections.index', array('collections'=> $collections));
+		$taxes = \Tax::all();
+		return \View::make('cms.taxes.index', array('taxes'=> $taxes));
 	}
 
 	/**
@@ -30,10 +32,10 @@ class CollectionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$collection =  new \Collection(\Input::all());
-		$collection->save();
-		// return \Redirect::to('cms/collections')->with('message', 'Product saved successfully!');
-		return \Response::json($collection,200);
+		$tax =  new \Tax(\Input::all());
+		$tax->save();
+		// return \Redirect::to('cms/taxes')->with('message', 'Product saved successfully!');
+		return \Response::json($tax,200);
 	}
 
 	/**

@@ -11,7 +11,8 @@ class CategoriesController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$categories = \Category::all();
+		return \View::make('cms.categories.index', array('categories'=> $categories));
 	}
 
 	/**
@@ -31,7 +32,10 @@ class CategoriesController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$category =  new \Category(\Input::all());
+		$category->save();
+		// return \Redirect::to('cms/categories')->with('message', 'Product saved successfully!');
+		return \Response::json($category,200);
 	}
 
 	/**

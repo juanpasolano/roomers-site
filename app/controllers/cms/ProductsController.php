@@ -24,7 +24,12 @@ class ProductsController extends \BaseController {
 	{
 		$categories = \Category::all();
 		$collections = \Collection::all();
-		return \View::make('cms.products.create', array('categories'=> $categories, 'collections' => $collections));
+		$taxes = \Tax::all();
+		return \View::make('cms.products.create',
+			array('categories'=> $categories,
+						'collections' => $collections,
+						'taxes' => $taxes
+						));
 
 	}
 
@@ -37,23 +42,26 @@ class ProductsController extends \BaseController {
 	{
 
 
-		// $file = \Input::file('image');
-		// dd($file);
-		// $destinationPath = 'uploads/products/';
-		// $filename = $file->getClientOriginalName();
-		// $uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
+		$file = \Input::file('image');
+		$destinationPath = 'public/uploads/products/';
+		$filename = $file->getClientOriginalName();
+		$uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
 
 		// if( $uploadSuccess ) {
 		//    return \Response::json('success', 200);
 		// } else {
 		//    return \Response::json('error', 400);
 		// }
+
 		$productData = \Input::all();
 		unset($productData['categories']);
+		$productData['image'] = $filename;
 		$product =  new \Product($productData);
-		$product->categories = \Input::get('categories');
 		$product->save();
-		return \Response::json($product, 200);
+		foreach (\Input::get('categories') as $key => $value) {
+			$product->categories()->attach(1,array('category_id'=>$value));
+		}
+		return \Redirect::to('cms/products')->with('message', 'Product saved successfully!');
 	}
 
 	/**

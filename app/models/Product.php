@@ -14,4 +14,9 @@ class Product extends Eloquent {
 	{
 		return $this->belongsTo('Collection');
 	}
+
+	public function tax()
+	{
+		return $this->belongsTo('Tax');
+	}
 }

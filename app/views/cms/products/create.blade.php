@@ -34,8 +34,7 @@
 
 		<li>
 			{{ Form::label('category', 'Category:') }}
-			<!-- {{ Form::select('categories', $categories) }} -->
-			<select class="select selectMultiple" id="categories" name="categories" multiple="multiple">
+			<select class="select " id="categories" name="categories[]" multiple="multiple">
 				@foreach ($categories as $cat)
 					<option value="{{$cat->id}}">{{$cat->name}}</option>
 				@endforeach
@@ -45,7 +44,7 @@
 		<li>
 			{{ Form::label('collection_id', 'Collection:') }}
 
-			<select class="select selectMultiple" id="collection_id" name="collection_id">
+			<select class="select" id="collection_id" name="collection_id">
 				@foreach ($collections as $coll)
 					<option value="{{$coll->id}}">{{$coll->name}}</option>
 				@endforeach
@@ -54,20 +53,24 @@
 
 		<li>
 			{{ Form::label('tax_id', 'Tax:') }}
-			{{ Form::text('tax_id') }}
+			<select class="select" id="tax_id" name="tax_id">
+				@foreach ($taxes as $tax)
+					<option value="{{$tax->id}}">{{$tax->name}}, {{$tax->percentage}}%</option>
+				@endforeach
+			</select>
 		</li>
 
 		<li>
 			{{ Form::label('premium', 'Premium:') }}
 			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
-			    <input type="checkbox"  checked="checked" name="premium">
+			    <input type="checkbox"  checked="checked" name="premium" value="1">
 			</div>
 		</li>
 
 		<li>
 			{{ Form::label('published', 'Published:') }}
 			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
-			    <input type="checkbox"  checked="checked" name="published">
+			    <input type="checkbox"  checked="checked" name="published" value="1">
 			</div>
 		</li>
 

@@ -19,10 +19,10 @@ $(document).ready(function(){
 
 
 
-	$('.selectMultiple').select2();
+	$('.select2Multiple').select2();
 
 	$(document).on('submit', '#createProductForm', function(e){
-		e.preventDefault();
+		// e.preventDefault();
 		var d = $(e.currentTarget).serializeObject();
 		console.log(d);
 		$.ajax({
@@ -35,7 +35,52 @@ $(document).ready(function(){
 		})
 	});
 
+	$(document).on('submit', '#createTaxForm', function(e){
+		e.preventDefault();
+		var d = $(e.currentTarget).serializeObject();
+		$(e.currentTarget).find('.loadMsg').show();
+		console.log(d);
+		$.ajax({
+			url: 'http://localhost:8000/cms/taxes',
+			data: d,
+			type: 'POST',
+			success: function(d){
+				console.log(d);
+				window.location.reload();
+			}
+		})
+	});
 
+	$(document).on('submit', '#createCollectionForm', function(e){
+		e.preventDefault();
+		var d = $(e.currentTarget).serializeObject();
+		$(e.currentTarget).find('.loadMsg').show();
+		console.log(d);
+		$.ajax({
+			url: 'http://localhost:8000/cms/collections',
+			data: d,
+			type: 'POST',
+			success: function(d){
+				console.log(d);
+				window.location.reload();
+			}
+		})
+	});
 
+	$(document).on('submit', '#createCategoryForm', function(e){
+		e.preventDefault();
+		var d = $(e.currentTarget).serializeObject();
+		$(e.currentTarget).find('.loadMsg').show();
+		console.log(d);
+		$.ajax({
+			url: 'http://localhost:8000/cms/categories',
+			data: d,
+			type: 'POST',
+			success: function(d){
+				console.log(d);
+				window.location.reload();
+			}
+		})
+	});
 
 });
