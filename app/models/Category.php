@@ -5,7 +5,7 @@ class Category extends Eloquent {
 
 	public static $rules = array();
 
-	public function product()
+	public function products()
     {
         return $this->belongsToMany('Product');
     }

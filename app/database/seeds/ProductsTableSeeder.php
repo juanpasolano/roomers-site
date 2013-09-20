@@ -11,7 +11,7 @@ class ProductsTableSeeder extends Seeder {
 	{
 		\DB::table('products')->delete();
 		\DB::table('products')->insert(array (
-			0 =>
+			0 => 
 			array (
 				'id' => 1,
 				'name' => 'Blank Chair',
@@ -26,7 +26,7 @@ class ProductsTableSeeder extends Seeder {
 				'created_at' => '2013-09-20 02:26:50',
 				'updated_at' => '2013-09-20 02:26:50',
 			),
-			1 =>
+			1 => 
 			array (
 				'id' => 2,
 				'name' => 'Blob Object',
@@ -41,7 +41,7 @@ class ProductsTableSeeder extends Seeder {
 				'created_at' => '2013-09-20 02:39:24',
 				'updated_at' => '2013-09-20 02:39:24',
 			),
-			2 =>
+			2 => 
 			array (
 				'id' => 3,
 				'name' => 'Space Elloquent',
@@ -56,7 +56,7 @@ class ProductsTableSeeder extends Seeder {
 				'created_at' => '2013-09-20 02:40:24',
 				'updated_at' => '2013-09-20 02:40:24',
 			),
-			3 =>
+			3 => 
 			array (
 				'id' => 4,
 				'name' => 'Space Elloquent',
@@ -70,6 +70,51 @@ class ProductsTableSeeder extends Seeder {
 				'published' => 1,
 				'created_at' => '2013-09-20 02:40:33',
 				'updated_at' => '2013-09-20 02:40:33',
+			),
+			4 => 
+			array (
+				'id' => 6,
+				'name' => 'Lodomono',
+				'description' => 'Assertively conceptualize end-to-end channels via innovative portals. Dramatically whiteboard orthogonal e-markets vis-a-vis world-class "outside the box" thinking. ',
+				'image' => '2b.jpg',
+				'price' => '550',
+				'discount' => '12',
+				'collection_id' => 1,
+				'tax_id' => 1,
+				'premium' => 0,
+				'published' => 1,
+				'created_at' => '2013-09-20 04:41:19',
+				'updated_at' => '2013-09-20 04:41:19',
+			),
+			5 => 
+			array (
+				'id' => 7,
+				'name' => 'Remo D230',
+				'description' => 'Collaboratively foster low-risk high-yield intellectual capital rather than user friendly process improvements. Dynamically mesh.',
+				'image' => '2.jpg',
+				'price' => '5200',
+				'discount' => '15',
+				'collection_id' => 1,
+				'tax_id' => 1,
+				'premium' => 0,
+				'published' => 1,
+				'created_at' => '2013-09-20 04:51:45',
+				'updated_at' => '2013-09-20 04:51:45',
+			),
+			6 => 
+			array (
+				'id' => 8,
+				'name' => 'First in the line',
+				'description' => 'Progressively target long-term high-impact potentialities after bricks-and-clicks web-readiness. Progressively customize sustainable "outside the box" thinking with clicks-and-mortar total linkage.',
+				'image' => '2.jpg',
+				'price' => '250',
+				'discount' => '2',
+				'collection_id' => 2,
+				'tax_id' => 1,
+				'premium' => 0,
+				'published' => 1,
+				'created_at' => '2013-09-20 05:02:07',
+				'updated_at' => '2013-09-20 05:02:07',
 			),
 		));
 	}

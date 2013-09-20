@@ -40,8 +40,8 @@
 			<!-- COLLECTIONS -->
 
 			@foreach($collections as $coll)
-			<a href="#" class="item itemLeft">
-				<img src="uploads/collections/{{$coll->image}}" height="400" width="490" alt="name of collection">
+			<a href="{{URL::to('shop/collection/'.$coll->id)}}" class="item itemLeft">
+				<img src="uploads/collections/{{$coll->image}}" height="400" width="490" alt="{{$coll->name}}">
 				<div class="info">
 					<h2>{{$coll->name}}</h2>
 					<p>{{$coll->description}}<br>
@@ -57,7 +57,7 @@
 			@foreach($products as $product)
 				<div class="item">
 					<h2>{{$product->name}}</h2>
-					<div class="imgFrame"><img src="uploads/products/{{$product->image}}" height="250" width="440" alt="productName"></div>
+					<div class="imgFrame"><img src="uploads/products/{{$product->image}}" height="250" width="440" alt="{{$product->name}}"></div>
 					<p>{{$product->description}}</p>
 					<div class="priceBox">
 						<span class="number">€{{$product->price}}</span>

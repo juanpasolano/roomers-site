@@ -29,11 +29,11 @@
 <body>
 
 <header>
-	<div class="logo"><img src="img/headerLogo.png" height="128" width="129" alt=""></div>
+	<div class="logo"><img src="{{asset('img/headerLogo.png');}}" height="128" width="129" alt=""></div>
 	<nav class="header">
 		<ul>
-			<li class=""><a href="index.php">Home</a></li>
-			<li class=""><a href="shop.php">Shop</a></li>
+			<li class=""><a href="{{URL::to('/')}}">Home</a></li>
+			<li class=""><a href="{{URL::to('shop')}}">Shop</a></li>
 			<!-- <li><a href="">Premium products</a></li> -->
 			<li><a href="">About us</a></li>
 			<li><a href="">Services</a></li>
@@ -42,8 +42,8 @@
 	</nav>
 	<nav class="header header-fixed">
 		<ul>
-			<li class=""><a href="index.php">Home</a></li>
-			<li class=""><a href="shop.php">Shop</a></li>
+			<li class=""><a href="{{URL::to('/')}}">Home</a></li>
+			<li class=""><a href="{{URL::to('shop')}}">Shop</a></li>
 			<!-- <li><a href="">Premium products</a></li> -->
 			<li><a href="">About us</a></li>
 			<li><a href="">Services</a></li>
@@ -80,9 +80,9 @@
 				@foreach (Cart::contents() as $item)
 				<tr>
 					<td>{{$item->name}}</td>
-					<td>1</td>
-					<td>47.5 €	</td>
-					<td>47.5 €</td>
+					<td>{{$item->quantity}}</td>
+					<td>{{$item->price}} €</td>
+					<td>{{$item->total()}} €*</td>
 					<td>
 						<a href="productDetails.php" class="btn btn-mini"><i class="icon-search"></i></a>
 						<a href="#" class="btn btn-mini btn-danger"><i class="icon-white icon-trash"></i></a>
@@ -92,7 +92,7 @@
 				<tr>
 					<td colspan="2"></td>
 					<td>Gross total	</td>
-					<td>126.78 €</td>
+					<td>{{Cart::total()}} €*</td>
 					<td></td>
 				</tr>
 			</tbody>

@@ -54,27 +54,39 @@ Route::get('/', function(){
 	return View::make('front.index', array('collections'=>$collections, 'products'=>$products));
 });
 
-Route::post('cart/addItem/{id}', function($id){
-// 	$items = array(
-//     'id' => 1,
-//     'name' => 'Juicy Picnic Hamper',
-//     'price' => 120.00,
-//     'quantity' => 1
-// );
+Route::get('shop', function(){
+	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+	$categories = Category::orderBy('updated_at', 'desc')->get()->all();
 
-//Make the insert...
-// Cart::insert($items);
+	$products = Product::orderBy('updated_at', 'asc')->get()->all();
+	return View::make('front.shop', array('products'=>$products, 'title'=>'Premium products'))
+						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+});
+Route::get('shop/category/{id}', function($id){
+	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+	$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+
+	$category = category::with('products')->get()->find($id);
+	return View::make('front.shop', array('products'=>$category->products, 'title'=>$category->name))
+						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+});
+Route::get('shop/collection/{id}', function($id){
+	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+	$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+
+	$collection = Collection::with('products')->get()->find($id);
+	return View::make('front.shop', array('products'=>$collection->products, 'title'=>$collection->name))
+						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+});
+
+Route::post('cart/addItem/{id}', function($id){
 	$product = Product::find($id);
-//Make the insert...
-	// dd($product->toJson());
-	// foreach ($product->toArray() as $key => $value) {
-	// 	var_dump($value);
-	// }
 	$item = array(
     'id' => $product->id,
     'name' => $product->name,
     'price' => $product->price,
     'tax_id' => $product->tax_id,
+    'tax' => 10,
     'quantity' => 1
 	);
 	Cart::insert($item);
