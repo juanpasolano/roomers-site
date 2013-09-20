@@ -26,13 +26,14 @@ Route::get('getSeeds', function(){
 	\Iseed::generateSeed('taxes');
 });
 
-
-Route::get('cms/customers/{id}/orders', '\cms\CustomersController@getOrders');
-Route::resource('cms/customers', '\cms\CustomersController');
-Route::resource('cms/products', '\cms\ProductsController');
-Route::resource('cms/collections', '\cms\CollectionsController');
-Route::resource('cms/categories', '\cms\CategoriesController');
-Route::resource('cms/taxes', '\cms\TaxesController');
+Route::group(array('prefix' => 'cms'), function() {
+	Route::get('customers/{id}/orders', '\cms\CustomersController@getOrders');
+	Route::resource('customers', '\cms\CustomersController');
+	Route::resource('products', '\cms\ProductsController');
+	Route::resource('collections', '\cms\CollectionsController');
+	Route::resource('categories', '\cms\CategoriesController');
+	Route::resource('taxes', '\cms\TaxesController');
+}
 
 
 Route::resource('products', 'Products');
