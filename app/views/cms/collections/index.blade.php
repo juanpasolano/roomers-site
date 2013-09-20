@@ -5,6 +5,7 @@
 		<thead>
 			<tr>
 				<td>id</td>
+				<td>Image</td>
 				<td>Name</td>
 				<td>Description</td>
 				<td>Actions</td>
@@ -14,6 +15,7 @@
 		@foreach($collections as $collection)
 					<tr>
 						<td>{{$collection->id}}</td>
+						<td>{{$collection->image}}</td>
 						<td>{{$collection->name}}</td>
 						<td>{{$collection->description}}</td>
 						<td>

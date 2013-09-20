@@ -12,10 +12,10 @@
 				<!-- <td>Description</td> -->
 				<td>Price</td>
 				<td>Discount</td>
-				<!-- <td>Tax</td> -->
+				<td>Premium</td>
 				<td>Collection</td>
 				<td>Categories</td>
-				<td>Premium</td>
+				<td>Actions</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,7 +27,7 @@
 						<!-- <td>{{$product->description}}</td> -->
 						<td>{{$product->price}}</td>
 						<td>{{$product->discount}}</td>
-						<!-- <td>{{$product->tax}}</td> -->
+						<td>{{$product->premium}}</td>
 						<td>{{$product->collection->name}}</td>
 						<td>@foreach($product->categories as $cat) <span class="label">{{$cat->name}}</span>  @endforeach</td>
 
