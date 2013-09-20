@@ -79,6 +79,15 @@ Route::get('shop/collection/{id}', function($id){
 						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
 });
 
+Route::get('shop/product/{id}', function($id){
+	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+	$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+
+	$product = Product::find($id);
+	return View::make('front.product', array('product'=>$product, 'title'=>$product->name))
+						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+});
+
 Route::post('cart/addItem/{id}', function($id){
 	$product = Product::find($id);
 	$item = array(

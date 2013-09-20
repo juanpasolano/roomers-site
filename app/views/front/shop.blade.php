@@ -19,7 +19,7 @@
 						<h3>{{$product->name}}</h3>
 						<div class="number"><strong>€{{$product->price}}</strong> Each piece</div>
 						<a href="#" data-id="{{$product->id}}" class="basicButton addToCartBtn">Add one</a>
-						<a href="productDetails.php" class="basicButton">Details</a>
+						<a href="{{URL::to('shop/product/'.$product->id)}}" class="basicButton">Details</a>
 					</div>
 				</div>
 				@endforeach

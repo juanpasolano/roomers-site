@@ -65,7 +65,7 @@
 					</div>
 					<div class="btnsBox">
 						<a href="#" class="basicButton fr">More info</a>
-						<a href="{{URL::to('cart/addItem/')}}" data-id="{{$product->id}}" class="basicButton fr addToCartBtn">Add to cart</a>
+						<a href="" data-id="{{$product->id}}" class="basicButton fr addToCartBtn">Add to cart</a>
 					</div>
 				</div>
 			@endforeach
