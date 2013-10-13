@@ -43,6 +43,9 @@ Route::resource('orders', 'OrdersController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('collections', 'CollectionsController');
 Route::resource('taxes', 'TaxesController');
+
+
+
 /*
 |-----------------------------------------------------------------------------
 | Routes for the front
@@ -88,6 +91,16 @@ Route::get('shop/product/{id}', function($id){
 						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
 });
 
+
+
+
+
+
+/*
+|-----------------------------------------------------------------------------
+| CART AJAX
+|-----------------------------------------------------------------------------
+*/
 Route::post('cart/addItem/{id}', function($id){
 	$product = Product::find($id);
 	$item = array(
