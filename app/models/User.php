@@ -70,7 +70,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getConfirmationToken()
 	{
 		$rec = DB::table('account_confirmations')->where('email', '=', $this->email)->select('token')->first();
-		$token = $rec->token;
+		$token = $rec ? $rec->token : null;
 		if (!$token) 
 		{
 			$token = str_replace('/', '', Hash::make($this->email . $this->password . $this->gender));
@@ -80,6 +80,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			));
 		}
 		return $token;
+	}
+
+
+	public function addresses()
+	{
+		return $this->hasMany('Address');
+	}
+
+	public function orders()
+	{
+		return $this->hasMany('Order');
 	}
 
 }

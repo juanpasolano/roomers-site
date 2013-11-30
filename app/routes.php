@@ -6,6 +6,7 @@ Route::group(array('prefix' => 'ed'), function() {
 
 
 	Route::controller('users', 'UsersController');
+	Route::controller('addresses', 'AddressesController');
 
 });
 
@@ -45,8 +46,8 @@ Route::group(array('prefix' => 'cms'), function() {
 
 
 Route::resource('products', 'Products');
-Route::resource('users', 'UsersController');
-Route::resource('addresses', 'AddressesController');
+// Route::resource('users', 'UsersController');
+// Route::resource('addresses', 'AddressesController');
 Route::resource('orders', 'OrdersController');
 Route::resource('categories', 'CategoriesController');
 Route::resource('collections', 'CollectionsController');
