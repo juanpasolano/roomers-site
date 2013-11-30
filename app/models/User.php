@@ -18,7 +18,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 	protected $hidden = array('password');
-
+	
+	/**
+	 * The attributes that aren't mass assignable.
+	 *
+	 * @var array
+	 */
+	protected $guarded = array('active', 'admin');
+	
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -47,6 +54,32 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function getReminderEmail()
 	{
 		return $this->email;
+	}
+
+	public function confirmAccount($token)
+	{
+		if ($this->getConfirmationToken() === $token)
+		{
+			$this->active = true;
+			$this->save();
+			return true;
+		}
+		return false;
+	}
+
+	public function getConfirmationToken()
+	{
+		$rec = DB::table('account_confirmations')->where('email', '=', $this->email)->select('token')->first();
+		$token = $rec->token;
+		if (!$token) 
+		{
+			$token = str_replace('/', '', Hash::make($this->email . $this->password . $this->gender));
+			DB::table('account_confirmations')->insert(array(
+				'email'		=> $this->email,
+				'token'		=> $token
+			));
+		}
+		return $token;
 	}
 
 }

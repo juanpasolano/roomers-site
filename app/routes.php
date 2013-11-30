@@ -1,11 +1,19 @@
 <?php
 
-// Route::get('/', function()
-// {
-// 	return View::make('hello');
-// });
 
-// Route::get('/', 'Home@index');
+
+Route::group(array('prefix' => 'ed'), function() {
+
+
+	Route::controller('users', 'UsersController');
+
+});
+
+
+
+
+
+
 
 Route::get('/', function(){
 	// $user = new User;

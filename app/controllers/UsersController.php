@@ -1,85 +1,163 @@
 <?php
 
+use Illuminate\Auth\Reminders\DatabaseReminderRepository;
+
+
 class UsersController extends BaseController {
 
-	protected $layout = 'master';
 	/**
-	 * Display a listing of the resource.
+	 * DatabaseReminderRepository 
 	 *
-	 * @return Response
+	 * @var reminders
 	 */
-	public function index()
+	protected $reminders;
+
+	public function __construct()
 	{
-		$users = User::all();
-		$this->layout->content = View::make('users.index', array('users'=>$users));
-		// return View::make('users.index', array('users'=>$users));
+		$this->reminders = new DatabaseReminderRepository(DB::connection(), Config::get('auth.reminder.table'), Config::get('app.key'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
+	public function getCustomerLogin()
 	{
-		// dd('create new');
-		$this->layout->content = View::make('users.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
-	public function store()
+	public function postCustomerLogin()
 	{
-		dd('store');
+		$creds = array(
+			'email' 	=> Input::get('email'),
+			'password'	=> Input::get('password'),
+			'active'	=> true,
+		);
+
+		if (Auth::attempt($creds)) 
+		{
+			return 'ok';
+		}
+		return 'err';
+	}
+	public function getCmsLogin()
+	{
+		# code...
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
+	public function postCmsLogin()
 	{
-		// dd('asdasdasd');
-		$user = User::find($id);
-		$this->layout->content = View::make('users.show', array('user'=>$user));
+		$creds = array(
+			'email' 	=> Input::get('email'),
+			'password'	=> Input::get('password'),
+			'active'	=> true,
+			'admin'		=> true
+		);
+
+		if (Auth::attempt($creds)) 
+		{
+			return 'ok';
+		}
+		return 'err';
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
+	public function getRegister()
 	{
-		//
+		# code...
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
+	public function postRegister()
 	{
-		//
+		$user = new User;
+		$user->email = Input::get('email');
+		$user->password =  Hash::make(Input::get('password'));
+		$user->gender = Input::get('gender');
+		$user->name = Input::get('name');
+		$user->phone = Input::get('phone');
+		$user->fax = Input::get('fax');
+
+		try 
+		{
+			$user->save();	
+			$token = $user->getConfirmationToken();
+			$email = $user->getReminderEmail();
+			$this->sendMail($user->getReminderEmail(), Lang::get('users.mail.subject.confirm'), 'emails.auth.confirm', compact('token', 'email'));
+		} 
+		catch (Exception $e) 
+		{
+			return 'error';
+		}
+		return 'ok';
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
+	public function getConfirmAccount($email, $token)
 	{
-		//
+		$user = User::where('email', '=', $email)->where('active', '=', false)->first();
+		
+		if ($user->confirmAccount($token)) 
+		{
+			return 'ok';
+		}
+		return 'err';
 	}
+
+	public function postSendToken()
+	{
+		$email = Input::get('email');
+		$user = User::where('email', '=', $email)->first();
+		if ($user)
+		{
+			try
+			{
+				$token = $this->reminders->create($user);
+				$this->sendMail($user->getReminderEmail(), Lang::get('users.mail.subject.reset'), 'emails.auth.reminder', compact('token'));
+			}
+			catch(Exception $e)
+			{
+				return 'err';
+			}
+			return 'ok';
+		}
+		return 'err';
+	}
+
+	public function getReset($token)
+	{
+		# code...
+	}
+
+	public function postResetPassword()
+	{
+		$user = User::where('email', '=', Input::get('email'))->first();
+		$token = Input::get('token');
+		if ($user)
+		{
+			$this->reminders->deleteExpired();
+			if ($this->reminders->exists($user, $token))
+			{
+				$this->reminders->delete($token);
+				$user->password = Hash::make(Input::get('password'));
+				$user->save();
+				return 'ok';
+			}
+		}
+		return 'err';
+	}
+
+
+	public function putProfile()
+	{
+		$user = Auth::user();
+		if ($user)
+		{
+			$user->fill(Input::all());
+			$user->save();
+		}	
+		return 'err';
+	}
+
+	public function sendMail($to, $subject, $view_name, $data = array())
+	{
+		Mail::send($view_name, $data, function($m) use ($to, $subject)
+		{
+			$m->to($to)->subject($subject);
+		});
+	}
+
 
 }

@@ -16,9 +16,12 @@ class CreateUsersTable extends Migration {
 			$table->increments('id');
 			$table->string('email')->unique();
 			$table->string('password');
+			$table->string('gender', 1);
 			$table->string('name');
 			$table->integer('phone');
-			$table->string('address');
+			$table->integer('fax');
+			$table->boolean('active')->default(false);
+			$table->boolean('admin')->default(false);//el flag para saber si accede al CMS
 			$table->timestamps();
 		});
 	}

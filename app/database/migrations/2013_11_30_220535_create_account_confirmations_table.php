@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateCategoryProductTable extends Migration {
+class CreateAccountConfirmationsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,14 @@ class CreateCategoryProductTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('category_product', function(Blueprint $table) {
+		Schema::create('account_confirmations', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('product_id');
-			$table->string('category_id');
+			$table->string('email')->index();
+			$table->string('token');
+			$table->timestamps();
 		});
 	}
+
 
 	/**
 	 * Reverse the migrations.
@@ -26,7 +28,7 @@ class CreateCategoryProductTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('category_product');
+		Schema::drop('account_confirmations');
 	}
 
 }
