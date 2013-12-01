@@ -9,7 +9,7 @@ Route::group(array('prefix' => 'ed'), function() {
 });
 
 
-
+Route::get('logout' , 'UsersController@getLogout');
 
 
 Route::get('getSeeds', function(){
@@ -20,6 +20,18 @@ Route::get('getSeeds', function(){
 });
 
 Route::group(array('prefix' => 'cms'), function() {
+
+	/*===================================
+	=            auth routes            =
+	===================================*/
+	
+	Route::get('login' , ['uses' => 'UsersController@getCmsLogin', 'as' => 'login.enter']);
+	Route::post('login' , ['uses' => 'UsersController@postCmsLogin', 'as' => 'login.make']);
+	
+	/*-----  End of auth routes  ------*/
+	
+	
+
 	Route::get('customers/{id}/orders', '\cms\CustomersController@getOrders');
 	Route::resource('customers', '\cms\CustomersController');
 	Route::resource('products', '\cms\ProductsController');

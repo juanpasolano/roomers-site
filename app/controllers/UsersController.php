@@ -37,7 +37,7 @@ class UsersController extends BaseController {
 	}
 	public function getCmsLogin()
 	{
-		# code...
+		return View::make('cms.login.login');
 	}
 
 	public function postCmsLogin()
@@ -49,11 +49,14 @@ class UsersController extends BaseController {
 			'admin'		=> true
 		);
 
+
 		if (Auth::attempt($creds)) 
 		{
-			return 'ok';
+			
+			 return Redirect::to('cms/products');
 		}
-		return 'err';
+		
+		return Redirect::to('cms/login')->with('message' , 'credenciales invalidas');
 	}
 
 	public function getRegister()
@@ -157,6 +160,11 @@ class UsersController extends BaseController {
 		{
 			$m->to($to)->subject($subject);
 		});
+	}
+	public function getLogout()
+	{
+		Auth::logout();
+		return Redirect::to('/');
 	}
 
 

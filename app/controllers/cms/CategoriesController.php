@@ -4,6 +4,11 @@ namespace cms;
 
 class CategoriesController extends \BaseController {
 
+
+	public function __construct()
+	{
+		$this->beforeFilter('admin-auth');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *

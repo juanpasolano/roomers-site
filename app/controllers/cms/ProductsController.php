@@ -4,6 +4,11 @@ namespace cms;
 
 class ProductsController extends \BaseController {
 
+
+	public function __construct()
+	{
+		$this->beforeFilter('admin-auth');
+	}
 	/**
 	 * Display a listing of the resource.
 	 * @return Response
