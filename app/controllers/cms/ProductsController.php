@@ -43,7 +43,7 @@ class ProductsController extends \BaseController {
 
 
 		$file = \Input::file('image');
-		$destinationPath = 'public/uploads/products/';
+		$destinationPath = 'uploads/products/';
 		$filename = $file->getClientOriginalName();
 		$uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
 
