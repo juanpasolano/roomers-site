@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var baseUrl = 'http://localhost:8000/'
+	var baseUrl = 'http://dropbox.local/Roomers/roomers-site/public/'
 	/*
 	|-----------------------------------------------------------------------------
 	| MENU FROM SCROLL
@@ -81,10 +81,30 @@ $(document).ready(function(){
 			url: baseUrl + 'cart/addItem/'+id,
 			type: 'POST',
 			success:function(data){
-				console.log(data.toJSON());
+				console.log(data);
 
 			}
 		})
+	});
+
+
+	/*
+	|-----------------------------------------------------------------------------
+	| LOGINMODAL
+	|-----------------------------------------------------------------------------
+	*/
+
+	$(document).on('click', '#loginForm .recoverBtn', function(){
+		$('#loginForm').hide(0);
+		$('#recoverForm').show(0);
+		$('#loginLabel').hide();
+		$('#rocoverLabel').show();
+	});
+	$(document).on('click', '#recoverForm .loginBtn', function(){
+		$('#loginForm').show(0);
+		$('#recoverForm').hide(0);
+		$('#loginLabel').show();
+		$('#rocoverLabel').hide();
 	});
 
 

@@ -103,10 +103,12 @@
 <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Login with your account</h3>
+    <h3 id="loginLabel">Login with your account</h3>
+    <h3 id="rocoverLabel" style="display:none">Recover your password</h3>
   </div>
   <div class="modal-body">
-  	<form action="profile.php" class="form-horizontal">
+  	<!--login-->
+  	<form action="profile.php" class="form-horizontal" id="loginForm">
   		<fieldset>
 				<div class="control-group">
 					<label class="control-label" for="email">Email</label>
@@ -125,16 +127,33 @@
 					<div class="controls">
 						<!-- <input type="password" class="input-xlarge" id="password"> -->
 						<input type="submit" value="Log in" class="basicButton">or <a href="#" class="basicButton">Create an account</a><br><br>
-						<a href="#">Forgot your password?</a>
+						<a href="#" class="recoverBtn">Forgot your password?</a>
+					</div>
+				</div>
+  		</fieldset>
+  	</form>
+
+
+  	<!-- recover password -->
+  	<form action="" class="form-horizontal" style="display: none" id="recoverForm">
+  		<fieldset>
+				<div class="control-group">
+					<label class="control-label" for="email">Email</label>
+					<div class="controls">
+						<input type="text" class="input-xlarge" id="email">
+					</div>
+				</div>
+				<div class="control-group">
+					<!-- <label class="control-label" for="password">Password</label> -->
+					<div class="controls">
+						<!-- <input type="password" class="input-xlarge" id="password"> -->
+						<input type="submit" value="Recover password" class="basicButton"><br><br>
+						<a href="#" class="loginBtn">You remembered your password.</a>
 					</div>
 				</div>
   		</fieldset>
   	</form>
   </div>
-  <!-- <div class="modal-footer">
-    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
-  </div> -->
 </div>
 
 
@@ -175,6 +194,7 @@
 </footer>
 
 <script src="{{asset('js/jquery.js');}}"></script>
+<script src="{{asset('js/bootstrap.min.js');}}"></script>
 <script src="{{asset('js/backbone/underscore.js');}}"></script>a
 <script src="{{asset('js/backbone/backbone.js');}}"></script>
 <script src="{{asset('js/backbone/handlebars.js');}}"></script>

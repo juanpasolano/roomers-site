@@ -41,6 +41,9 @@ h1 {
   font-size: 3em;
   text-align: center;
 }
+ol {
+  padding-left: 40px;
+}
 input[type="submit"] {
   border: none;
 }
@@ -73,6 +76,15 @@ body {
 }
 .colorFucsia {
   color: #ef2e89;
+}
+.termsTexts h1 {
+  margin-bottom: 20px;
+}
+.termsTexts h2,
+.termsTexts h3,
+.termsTexts h4,
+.termsTexts h5 {
+  margin-bottom: 10px;
 }
 /*
 |-----------------------------------------------------------------------------

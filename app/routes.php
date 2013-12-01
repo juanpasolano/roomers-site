@@ -3,30 +3,14 @@
 
 
 Route::group(array('prefix' => 'ed'), function() {
-
-
 	Route::controller('users', 'UsersController');
-	Route::controller('addresses', 'AddressesController');
+	//Route::controller('addresses', 'AddressesController');
 
 });
 
 
 
 
-
-
-
-Route::get('/', function(){
-	// $user = new User;
-	// $user->email = 'asd@clam.com';
-	// $user->password = Hash::make('password');
-	// $user->save();
-	// return link_to('/admin', 'Go to admin');
-});
-
-// Route::get('/admin', ['before'=> 'auth.basic', function(){
-// 	return link_to('/users', 'Users');
-// }]);
 
 Route::get('getSeeds', function(){
 	// \Iseed::generateSeed('addresses');
@@ -45,13 +29,13 @@ Route::group(array('prefix' => 'cms'), function() {
 });
 
 
-Route::resource('products', 'Products');
+//Route::resource('products', 'Products');
 // Route::resource('users', 'UsersController');
 // Route::resource('addresses', 'AddressesController');
-Route::resource('orders', 'OrdersController');
-Route::resource('categories', 'CategoriesController');
-Route::resource('collections', 'CollectionsController');
-Route::resource('taxes', 'TaxesController');
+//Route::resource('orders', 'OrdersController');
+//Route::resource('categories', 'CategoriesController');
+//Route::resource('collections', 'CollectionsController');
+//Route::resource('taxes', 'TaxesController');
 
 
 
@@ -98,6 +82,59 @@ Route::get('shop/product/{id}', function($id){
 	$product = Product::find($id);
 	return View::make('front.product', array('product'=>$product, 'title'=>$product->name))
 						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+});
+
+
+
+Route::group(array('prefix' => 'policies'), function() {
+	Route::get('terms', function(){
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('front.policies.terms')
+							->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+	});
+	//impresumm
+	Route::get('imprint', function(){
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('front.policies.imprint')
+							->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+	});
+	//Datenschutz
+	Route::get('privacy', function(){
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('front.policies.privacy')
+							->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+	});
+	//Uber uns
+	Route::get('aboutus', function(){
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('front.policies.aboutus')
+							->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+	});
+	//Presse
+	Route::get('press', function(){
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('front.policies.press')
+							->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+	});
+	//Karriere
+	Route::get('career', function(){
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('front.policies.career')
+							->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+	});
+	//Versprechen
+	Route::get('promise', function(){
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('front.policies.career')
+							->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+	});
 });
 
 
