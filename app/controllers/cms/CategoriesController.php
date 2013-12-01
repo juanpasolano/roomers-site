@@ -39,8 +39,8 @@ class CategoriesController extends \BaseController {
 	{
 		$category =  new \Category(\Input::all());
 		$category->save();
-		// return \Redirect::to('cms/categories')->with('message', 'Product saved successfully!');
-		return \Response::json($category,200);
+		return \Redirect::to('cms/categories')->with('message', 'Product saved successfully!');
+		//return \Response::json($category,200);
 	}
 
 	/**
@@ -62,7 +62,8 @@ class CategoriesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$category = \Category::find($id);
+		return \View::make('cms.categories.edit', array('category'=> $category));
 	}
 
 	/**
@@ -73,7 +74,11 @@ class CategoriesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$category = \Category::find($id);
+		$category->name = \Input::get('name');
+		$category->description = \Input::get('description');
+		$category->save();
+		return \Redirect::to('cms/categories')->with('message', 'CAtegory updated!');
 	}
 
 	/**
@@ -84,7 +89,9 @@ class CategoriesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$category = \Category::find($id);
+		$category->delete();
+		return \Redirect::to('cms/categories')->with('message', 'Category deleted!');
 	}
 
 }

@@ -18,7 +18,10 @@
 						<td>{{$category->description}}</td>
 						<td>
 							<a class="btn btn-mini" href="{{ URL::to('/cms/categories/'.$category->id.'/edit'); }}">Edit</a>
-							<a class="btn btn-mini btn-danger" method="DELETE" href="{{ URL::to('/cms/categories/'.$category->id); }}">Remove</a>
+							<form action="{{ URL::to('/cms/categories/'.$category->id); }}" method="POST" >
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="submit" value="Remove" class="btn btn-mini btn-danger">
+							</form>
 						</td>
 					</tr>
 		@endforeach
@@ -27,7 +30,7 @@
 
 	<hr class="bs-docs-separator">
 	<div class="well span4">
-		<form action="#" class="form" id="createCategoryForm">
+		<form action="{{URL::to('/cms/categories/')}}" method="POST" class="form" id="createCategoryForm">
 			<fieldset>
 				<legend>Create a new category</legend>
 				<label for="name">Name</label>

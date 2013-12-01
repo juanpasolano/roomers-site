@@ -67,7 +67,7 @@ $(document).ready(function(){
 		})
 	});
 
-	$(document).on('submit', '#createCategoryForm', function(e){
+	/*$(document).on('submit', '#createCategoryForm', function(e){
 		e.preventDefault();
 		var d = $(e.currentTarget).serializeObject();
 		$(e.currentTarget).find('.loadMsg').show();
@@ -81,6 +81,6 @@ $(document).ready(function(){
 				window.location.reload();
 			}
 		})
-	});
+	});*/
 
 });
