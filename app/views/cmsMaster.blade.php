@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="js/jquery-1.9.0.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css"> -->
 <link href="{{asset('vendor/select2/select2.css');}}" rel="stylesheet">
+<link href="{{asset('css/cms.css');}}" rel="stylesheet">
 <link href="{{asset('vendor/switch/bootstrap-switch.css');}}" rel="stylesheet">
 
 </head>
