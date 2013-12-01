@@ -13,13 +13,17 @@ class CustomersTableSeeder extends Seeder {
 			'password' => Hash::make('123123'),
 			'gender' => 'm',
 			'name'=>'Jhon',
-			'phone'=>'8912357981'],
+			'phone'=>'8912357981',
+			'admin' => 1,
+			'active'=> 1],
 			[
 			'email'=> 'john@clam.com',
 			'password' => Hash::make('123123'),
 			'gender' => 'm',
 			'name'=>'Jhon',
-			'phone'=>'8912357981']
+			'phone'=>'8912357981',
+			'admin' => 0,
+			'active'=> 1]
 		);
 
 		// Uncomment the below to run the seeder

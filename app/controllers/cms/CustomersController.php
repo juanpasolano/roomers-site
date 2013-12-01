@@ -18,7 +18,7 @@ class CustomersController extends \BaseController {
 		// dd(Customer::all());
 		// return Response::json(Customer::all(), 200);
 		// return Response::json(Customer::with('orders')->get());
-		$customers = \Customer::with('orders')->get()->all();
+		$customers = \User::with('orders')->get()->all();
 		return \View::make('cms.customers.index', array('customers'=> $customers));
 	}
 

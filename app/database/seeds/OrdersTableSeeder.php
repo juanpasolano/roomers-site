@@ -14,7 +14,7 @@ class OrdersTableSeeder extends Seeder {
 			0 => 
 			array (
 				'id' => 1,
-				'customer_id' => 1,
+				'user_id' => 1,
 				'cart_total' => 123,
 				'taxes_total' => 432,
 				'bruto_total' => 123,

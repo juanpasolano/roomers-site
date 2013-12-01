@@ -10,17 +10,17 @@ class UsersTableSeeder extends Seeder {
 		$users = array(
 			[
 			'email'=> 'john@clam.com',
-			'password' => Hash::make('123123')/*,
-			'name'=>'Jhon',
-			'address'=>'Gastfeldstrasse 121',
-			'phone'=>'8912357981'*/],
+			'password' => Hash::make('123123'),
+			'admin' => 1,
+			'active' => 1
+			],
 
 			[
 			'email'=> 'leila@clam.com',
-			'password' =>Hash::make('123123')/*,
-			'name'=>'Leila',
-			'address'=>'Gastfeldstrasse 121',
-			'phone'=>'8912357981'*/]
+			'password' =>Hash::make('123123'),
+			'admin' => 0,
+			'active'=> 1
+			]
 		);
 
 		// Uncomment the below to run the seeder

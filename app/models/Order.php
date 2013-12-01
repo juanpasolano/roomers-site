@@ -5,8 +5,8 @@ class Order extends Eloquent {
 
 	public static $rules = array();
 
-	public function customer()
+	public function user()
 	{
-		return $this->belongsTo('Customer');
+		return $this->belongsTo('User');
 	}
 }
