@@ -5,27 +5,25 @@ class CustomersTableSeeder extends Seeder {
 	public function run()
 	{
 		// Uncomment the below to wipe the table clean before populating
-		DB::table('customers')->truncate();
+		DB::table('users')->truncate();
 
 		$customers = array(
 			[
-			'email'=> 'john@clam.com',
+			'email'=> 'johny@clam.com',
 			'password' => Hash::make('123123'),
 			'gender' => 'm',
-			'firstname'=>'Jhon',
-			'lastname'=>'Dow',
+			'name'=>'Jhon',
 			'phone'=>'8912357981'],
 			[
 			'email'=> 'john@clam.com',
 			'password' => Hash::make('123123'),
 			'gender' => 'm',
-			'firstname'=>'Jhon',
-			'lastname'=>'Dow',
+			'name'=>'Jhon',
 			'phone'=>'8912357981']
 		);
 
 		// Uncomment the below to run the seeder
-		DB::table('customers')->insert($customers);
+		DB::table('users')->insert($customers);
 	}
 
 }
