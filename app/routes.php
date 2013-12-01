@@ -25,8 +25,8 @@ Route::group(array('prefix' => 'cms'), function() {
 	=            auth routes            =
 	===================================*/
 	
-	Route::get('login' , ['uses' => 'UsersController@getCmsLogin', 'as' => 'login.enter']);
-	Route::post('login' , ['uses' => 'UsersController@postCmsLogin', 'as' => 'login.make']);
+	Route::get('login' , array('uses' => 'UsersController@getCmsLogin', 'as' => 'login.enter'));
+	Route::post('login' , array('uses' => 'UsersController@postCmsLogin', 'as' => 'login.make'));
 	
 	/*-----  End of auth routes  ------*/
 	
@@ -34,7 +34,10 @@ Route::group(array('prefix' => 'cms'), function() {
 
 	Route::get('customers/{id}/orders', '\cms\CustomersController@getOrders');
 	Route::resource('customers', '\cms\CustomersController');
+	Route::post('products/{id}/upload-images' , array('uses' => '\cms\ProductsController@uploadImages' ,'as' => 'products.upload-images'));
 	Route::resource('products', '\cms\ProductsController');
+	Route::resource('products.productimages', 'ProductimagesController');
+
 	Route::resource('collections', '\cms\CollectionsController');
 	Route::resource('categories', '\cms\CategoriesController');
 	Route::resource('taxes', '\cms\TaxesController');
@@ -174,3 +177,4 @@ Route::post('cart/addItem/{id}', function($id){
 	return Response::json(Cart::contents(true),200);
 	dd(Input::all());
 });
+

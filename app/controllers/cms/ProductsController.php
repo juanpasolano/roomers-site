@@ -117,4 +117,26 @@ class ProductsController extends \BaseController {
 		return \Redirect::to('cms/products')->with('message', 'Product saved successfully!');
 	}
 
+	public function uploadImages($id)
+	{
+		$product = \Product::findOrFail($id);
+		$file = \Input::file('file'); // your file upload input field in the form should be named 'file'
+
+		$destinationPath = 'uploads/product-images';
+		$filename = $file->getClientOriginalName();
+		//$extension =$file->getClientOriginalExtension(); //if you need extension of the file
+		$uploadSuccess = \Input::file('file')->move($destinationPath, $filename);
+		 
+		if( $uploadSuccess ) {
+
+			$image = new \ProductImage;
+			$image->url = $filename;
+			$product->gallery()->save($image);
+
+		   return \Response::json('success', 200); // or do a redirect with some message that file was uploaded
+		} else {
+		   return \Response::json('error', 400);
+		}
+	}
+
 }

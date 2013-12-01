@@ -5,7 +5,7 @@
 	<h3>Edit product <span class="text-info">{{$product->name}}</span></h3>
 
 
-	{{ Form::open(array('route' => 'cms.products.store')) }}
+	{{ Form::open(array('route' => 'cms.products.store' , 'files' => 'true')) }}
 	<ul>
 		<li>
 			{{ Form::label('name', 'Name:') }}
@@ -20,6 +20,12 @@
 		<li>
 			{{ Form::label('image', 'Image:') }}
 			{{ Form::text('image') }}
+		</li>
+
+		<li>
+			<div id="fileInput">
+			drag here
+			</div>
 		</li>
 
 		<li>
@@ -63,4 +69,17 @@
 	</ul>
 {{ Form::close() }}
 
+@stop
+
+@section('scripts')
+	{{HTML::script('js/dropzone.js')}}
+
+	<script>
+	(function()
+	{
+		$('#fileInput').dropzone({url: 'upload-images'});
+
+
+	})();
+	</script>
 @stop

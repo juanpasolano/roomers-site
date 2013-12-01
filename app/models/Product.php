@@ -19,4 +19,9 @@ class Product extends Eloquent {
 	{
 		return $this->belongsTo('Tax');
 	}
+
+	public function gallery()
+	{
+		return $this->hasMany('ProductImage' , 'product_id');
+	}
 }

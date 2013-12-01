@@ -57,5 +57,6 @@
 <script src="{{asset('vendor/select2/select2.min.js');}}"></script>
 <script src="{{asset('vendor/switch/bootstrap-switch.min.js');}}"></script>
 <script src="{{asset('js/cmsRoomers.js');}}"></script>
+@yield('scripts')
 </body>
 </html>
