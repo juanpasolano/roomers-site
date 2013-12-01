@@ -2,6 +2,11 @@
 namespace cms;
 class CollectionsController extends \BaseController {
 
+
+	public function __construct()
+	{
+		$this->beforeFilter('admin-auth');
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
