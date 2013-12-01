@@ -78,7 +78,7 @@ class ProductsController extends \BaseController {
 	public function show($id)
 	{
 		$product = \Product::with('categories', 'collection')->get()->find($id);
-		return \Response::json($product);
+		return \View::make('cms.products.show')->with('product' , $product);
 	}
 
 	/**
