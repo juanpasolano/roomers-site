@@ -14,7 +14,7 @@ class AddressesTableSeeder extends Seeder {
 			0 => 
 			array (
 				'id' => 2,
-				'customer_id' => 1,
+				'user_id' => 1,
 				'street' => 'Gastfeldstrasse 32',
 				'suburb' => 'Neustad',
 				'postcode' => '22880',
@@ -28,7 +28,7 @@ class AddressesTableSeeder extends Seeder {
 			1 => 
 			array (
 				'id' => 3,
-				'customer_id' => 1,
+				'user_id' => 1,
 				'street' => 'Normand 25',
 				'suburb' => 'Neustad',
 				'postcode' => '5620',
