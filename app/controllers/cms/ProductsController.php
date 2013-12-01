@@ -63,9 +63,7 @@ class ProductsController extends \BaseController {
 		$productData['image'] = $filename;
 		$product =  new \Product($productData);
 		$product->save();
-		foreach (\Input::get('categories') as $key => $value) {
-			$product->categories()->attach(1,array('category_id'=>$value));
-		}
+		$product->categories()->sync(\Input::get('categories'));
 		return \Redirect::to('cms/products')->with('message', 'Product saved successfully!');
 	}
 
@@ -89,8 +87,15 @@ class ProductsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		$categories = \Category::all();
+		$collections = \Collection::all();
+		$taxes = \Tax::all();
 		$product = \Product::find($id);
-		return \View::make('cms.products.edit', array('product'=> $product));
+		return \View::make('cms.products.edit', array('product'=> $product,
+			'categories'=> $categories,
+			'collections' => $collections,
+			'taxes' => $taxes
+		));
 	}
 
 	/**
@@ -101,7 +106,31 @@ class ProductsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$file = \Input::file('image');
+		$productData = \Input::all();
+		if($file){
+			$destinationPath = 'uploads/products/';
+			$filename = $file->getClientOriginalName();
+			$uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
+			$productData['image'] = $filename;
+		}
+
+		// if( $uploadSuccess ) {
+		//    return \Response::json('success', 200);
+		// } else {
+		//    return \Response::json('error', 400);
+		// }
+
+		unset($productData['categories']);
+		$product = \Product::find($id);
+		
+		$product->update($productData);
+		
+
+		$product->categories()->sync(\Input::get('categories'));
+		
+
+		return \Redirect::to('cms/products')->with('message', 'Product saved successfully!');
 	}
 
 	/**
