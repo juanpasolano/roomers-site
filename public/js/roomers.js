@@ -109,6 +109,13 @@ $(document).ready(function(){
 
 
 
+
+
+	$(document).on('click', '.removeItem', function(e){
+		console.log(e);
+		confirm();
+	})
+
 });
 
 

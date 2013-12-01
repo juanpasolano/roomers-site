@@ -30,12 +30,14 @@
 						<td>{{$product->premium}}</td>
 						<td>{{$product->collection->name}}</td>
 						<td>@foreach($product->categories as $cat) <span class="label">{{$cat->name}}</span>  @endforeach</td>
-
-
 						<td>
 							<a class="btn btn-mini" href="{{ URL::to('/cms/products/'.$product->id); }}">Details</a>
 							<a class="btn btn-mini" href="{{ URL::to('/cms/products/'.$product->id.'/edit'); }}">Edit</a>
-							<a class="btn btn-mini btn-danger" method="DELETE" href="{{ URL::to('/cms/products/'.$product->id); }}">Remove</a>
+							<form action="{{ URL::to('/cms/products/'.$product->id); }}" method="POST">
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="submit" value="Remove">
+							</form>
+
 						</td>
 					</tr>
 		@endforeach

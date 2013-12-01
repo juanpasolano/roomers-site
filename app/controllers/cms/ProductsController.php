@@ -107,9 +107,9 @@ class ProductsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		dd($id.' sadasdasdasdasd');
 		$product = \Product::find($id);
 		$product->delete();
+		return \Redirect::to('cms/products')->with('message', 'Product saved successfully!');
 	}
 
 }
