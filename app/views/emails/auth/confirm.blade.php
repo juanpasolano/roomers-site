@@ -7,7 +7,7 @@
 		<h2>Password Confirm</h2>
 
 		<div>
-			To confirm your account go to: http://localhost/roomers/public/ed/users/confirm-account/{{$email}}/{{$token}}
+			To confirm your account go to: {{url('ed/users/confirm-account')}}/{{$email}}/{{$token}}
 		</div>
 	</body>
 </html>

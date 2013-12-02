@@ -59,11 +59,19 @@ Route::group(array('prefix' => 'cms'), function() {
 | Routes for the front
 |-----------------------------------------------------------------------------
 */
-Route::get('/', function(){
-	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
-	$products = Product::where('premium', "=", '1')->get()->all();
-	return View::make('front.index', array('collections'=>$collections, 'products'=>$products));
-});
+
+
+/*===================================
+=            rutas front            =
+===================================*/
+
+Route::get('/', array('uses' => 'SiteController@index' , 'as' => 'site.front'));
+
+/*-----  End of rutas front  ------*/
+
+
+
+
 
 Route::get('shop', function(){
 	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();

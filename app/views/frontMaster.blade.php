@@ -54,14 +54,19 @@
 
 <div class="accountWidget">
 	<div class="shown">
-		Hi, Lopex Rodrigues Kanz<br>
-		<a href="profile.php">Profile</a><br>
-		<a href="#">Sign out</a><br>
+	@if (Auth::check())
+		Hi,  {{Auth::user()->firstname}} {{Auth::user()->lastname}}<br>
+		<a href="{{action('UsersController@getUserDetails' , Auth::user()->id)}}">Profile</a><br>
+		<a href="{{url('logout')}}">Sign out</a><br>
+	@endif
+		
 
 		<!-- You are not logged in<br> -->
+		@if(Auth::guest())
 		<a href="#loginModal" role="button" data-toggle="modal">Log in now</a><br>
-		<a href="newAccount.php">Create an account</a>
-		<a href="#" class="cartBtn">{{Cart::totalItems();}} items</a><br>
+		<a href="{{action('UsersController@getRegister')}}">Create an account</a>
+		@endif
+		<a href="#" class="cartBtn">{{Cart::totalItems()}} items</a><br>
 	</div>
 	<div class="hidden">
 		<a href="orderMake.php" class="btn btn-fucsia pull-right">Continue the purchase</a>
@@ -108,25 +113,25 @@
   </div>
   <div class="modal-body">
   	<!--login-->
-  	<form action="profile.php" class="form-horizontal" id="loginForm">
+  	<form action="{{action('UsersController@postCustomerLogin')}}" class="form-horizontal" id="loginForm" method="POST">
   		<fieldset>
 				<div class="control-group">
 					<label class="control-label" for="email">Email</label>
 					<div class="controls">
-						<input type="text" class="input-xlarge" id="email">
+						<input type="text" class="input-xlarge" id="email" name="email">
 					</div>
 				</div>
 				<div class="control-group">
 					<label class="control-label" for="password">Password</label>
 					<div class="controls">
-						<input type="password" class="input-xlarge" id="password">
+						<input type="password" class="input-xlarge" id="password" type="password" name="password">
 					</div>
 				</div>
 				<div class="control-group">
 					<!-- <label class="control-label" for="password">Password</label> -->
 					<div class="controls">
 						<!-- <input type="password" class="input-xlarge" id="password"> -->
-						<input type="submit" value="Log in" class="basicButton">or <a href="#" class="basicButton">Create an account</a><br><br>
+						<input type="submit" value="Log in" class="basicButton">or <a href="{{action('UsersController@getRegister')}}" class="basicButton">Create an account</a><br><br>
 						<a href="#" class="recoverBtn">Forgot your password?</a>
 					</div>
 				</div>
@@ -135,12 +140,12 @@
 
 
   	<!-- recover password -->
-  	<form action="" class="form-horizontal" style="display: none" id="recoverForm">
+  	<form action="{{action('UsersController@postSendToken')}}" class="form-horizontal" style="display: none" id="recoverForm" method="POST">
   		<fieldset>
 				<div class="control-group">
 					<label class="control-label" for="email">Email</label>
 					<div class="controls">
-						<input type="text" class="input-xlarge" id="email">
+						<input type="text" class="input-xlarge" id="email" name="email" required>
 					</div>
 				</div>
 				<div class="control-group">

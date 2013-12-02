@@ -31,9 +31,9 @@ class UsersController extends BaseController {
 
 		if (Auth::attempt($creds)) 
 		{
-			return 'ok';
+			return Redirect::to('/');
 		}
-		return 'err';
+		return Redirect::to('/')->with('message' , 'failed auth');
 	}
 	public function getCmsLogin()
 	{
@@ -61,7 +61,7 @@ class UsersController extends BaseController {
 
 	public function getRegister()
 	{
-		# code...
+		return View::make('users.create');
 	}
 
 	public function postRegister()
@@ -70,7 +70,8 @@ class UsersController extends BaseController {
 		$user->email = Input::get('email');
 		$user->password =  Hash::make(Input::get('password'));
 		$user->gender = Input::get('gender');
-		$user->name = Input::get('name');
+		$user->firstname = Input::get('firstname');
+		$user->lastname = Input::get('lastname');
 		$user->phone = Input::get('phone');
 		$user->fax = Input::get('fax');
 
@@ -83,6 +84,7 @@ class UsersController extends BaseController {
 		} 
 		catch (Exception $e) 
 		{
+			dd($e->getMessage());
 			return 'error';
 		}
 		return 'ok';
@@ -90,13 +92,14 @@ class UsersController extends BaseController {
 
 	public function getConfirmAccount($email, $token)
 	{
-		$user = User::where('email', '=', $email)->where('active', '=', false)->first();
+		$user = User::where('email', '=', $email)->first();
 		
 		if ($user->confirmAccount($token)) 
 		{
-			return 'ok';
+			Auth::login($user);
+			return Redirect::to('/');
 		}
-		return 'err';
+		return Redirect::to('/')->with('message' , 'validación fallida');
 	}
 
 	public function postSendToken()
@@ -114,20 +117,23 @@ class UsersController extends BaseController {
 			{
 				return 'err';
 			}
-			return 'ok';
+			return Redirect::to('/')->with('message', 'reset email sent');
 		}
 		return 'err';
 	}
 
 	public function getReset($token)
 	{
-		# code...
+		return View::make('users.password-reset')->with('token' , $token);
 	}
 
 	public function postResetPassword()
 	{
+
+			
 		$user = User::where('email', '=', Input::get('email'))->first();
 		$token = Input::get('token');
+		
 		if ($user)
 		{
 			$this->reminders->deleteExpired();
@@ -136,10 +142,10 @@ class UsersController extends BaseController {
 				$this->reminders->delete($token);
 				$user->password = Hash::make(Input::get('password'));
 				$user->save();
-				return 'ok';
+				return Redirect::to('/')->with('message' , 'succesfull update');
 			}
 		}
-		return 'err';
+		return Redirect::to('/')->with('message' , 'couldn\'t reset password, please contact us');
 	}
 
 
@@ -165,6 +171,17 @@ class UsersController extends BaseController {
 	{
 		Auth::logout();
 		return Redirect::to('/');
+	}
+
+	public function getUserDetails($id)
+	{
+		$user = User::findOrFail($id);
+
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+
+		return View::make('users.show')->with('user' , $user)->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
+
 	}
 
 
