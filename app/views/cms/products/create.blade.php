@@ -2,82 +2,113 @@
 @section('content')
 	<h1>Products</h1>
 
-	Create a new product
+	<h2>Create a new product</h2>
 
 
-	{{ Form::open(array('route' => 'cms.products.store', 'id'=>'createProductForm', 'files' => true)) }}
-	<ul>
-		<li>
-			{{ Form::label('name', 'Name:') }}
-			{{ Form::text('name') }}
-		</li>
+	{{ Form::open(array('route' => 'cms.products.store', 'id'=>'createProductForm', 'files' => true, 'class'=>'form-horizontal')) }}
 
-		<li>
-			{{ Form::label('description', 'Description:') }}
-			{{ Form::textarea('description') }}
-		</li>
+			<div class="control-group">
+				{{ Form::label('name', 'Name:', array('class'=>'control-label')) }}
+				<div class="controls">
+					{{ Form::text('name', '', array('class' => 'input input-xlarge')) }}
+				</div>
+			</div>
+	
+<div class="control-group">
+	{{ Form::label('description', 'Description:', array('class'=>'control-label')) }}
+	<div class="controls">
+		{{ Form::textarea('description', '', array('class' => 'input input-xlarge')) }}
+	</div>
+</div>
 
-		<li>
-			{{ Form::label('image', 'Image:') }}
+<div class="control-group">
+			{{ Form::label('image', 'Primary image:', array('class'=>'control-label')) }}
+	<div class="controls">
+
 			<input type="file" name="image" id="">
-		</li>
+	</div>
+</div>
+	
 
-		<li>
-			{{ Form::label('price', 'Price:') }}
+
+			<div id="fileInput" class="well dropzone">
+				<h3>Drag the rest of the images of your product here</h3>
+			</div>
+	
+
+
+<div class="control-group">
+			{{ Form::label('price', 'Price:', array('class'=>'control-label')) }}
+	<div class="controls">
 			{{ Form::text('price') }}
-		</li>
-
-		<li>
-			{{ Form::label('discount', 'Discount:') }}
+	</div>
+</div>
+	
+<div class="control-group">
+			{{ Form::label('discount', 'Discount:', array('class'=>'control-label')) }}
+	<div class="controls">
 			{{ Form::text('discount') }}
-		</li>
+	</div>
+</div>
+	
+<div class="control-group">
+			{{ Form::label('collection', 'Collection:', array('class'=>'control-label')) }}
+	<div class="controls">
+	<select class="select" id="collection_id" name="collection_id">
+		@foreach ($collections as $coll)
+			<option value="{{$coll->id}}" >{{$coll->name}} </option>
+		@endforeach
+	</select>
+	</div>
+</div>
 
-		<li>
-			{{ Form::label('category', 'Category:') }}
-			<select class="select " id="categories" name="categories[]" multiple="multiple">
-				@foreach ($categories as $cat)
-					<option value="{{$cat->id}}">{{$cat->name}}</option>
-				@endforeach
-			</select>
-		</li>
+	
+	
+<div class="control-group">
+	{{ Form::label('category', 'Category:', array('class'=>'control-label')) }}
+	<div class="controls">
+		<select class="select " id="categories" name="categories[]" multiple="multiple">
+			@foreach ($categories as $cat)
+				<option value="{{$cat->id}}" >{{$cat->name}}</option>
+			@endforeach
+		</select>
+	</div>
+</div>
+	
+<div class="control-group">
+			{{ Form::label('tax', 'Tax:', array('class'=>'control-label')) }}
+	<div class="controls">
+	<select class="select" id="tax_id" name="tax_id">
+		@foreach ($taxes as $tax)
+			<option value="{{$tax->id}}" >{{$tax->name}} </option>
+		@endforeach
+	</select>
+	</div>
+</div>
 
-		<li>
-			{{ Form::label('collection_id', 'Collection:') }}
 
-			<select class="select" id="collection_id" name="collection_id">
-				@foreach ($collections as $coll)
-					<option value="{{$coll->id}}">{{$coll->name}}</option>
-				@endforeach
-			</select>
-		</li>
-
-		<li>
-			{{ Form::label('tax_id', 'Tax:') }}
-			<select class="select" id="tax_id" name="tax_id">
-				@foreach ($taxes as $tax)
-					<option value="{{$tax->id}}">{{$tax->name}}, {{$tax->percentage}}%</option>
-				@endforeach
-			</select>
-		</li>
-
-		<li>
-			{{ Form::label('premium', 'Premium:') }}
+<div class="control-group">
+			{{ Form::label('premium', 'Premium:', array('class'=>'control-label')) }}
+	<div class="controls">
 			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
 			    <input type="checkbox"  checked="checked" name="premium" value="1">
 			</div>
-		</li>
+	</div>
+</div>
 
-		<li>
-			{{ Form::label('published', 'Published:') }}
+
+<div class="control-group">
+			{{ Form::label('published', 'Published:', array('class'=>'control-label')) }}
+	<div class="controls">
 			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
-			    <input type="checkbox"  checked="checked" name="published" value="1">
+			    <input type="checkbox" checked="checked" name="published" value="1">
 			</div>
-		</li>
+	</div>
+</div>
+	
 
-		<li>
 			{{ Form::submit() }}
-		</li>
-	</ul>
+		</fieldset>
 {{ Form::close() }}
 
 @stop

@@ -125,7 +125,7 @@ class ProductImagesController extends BaseController {
 	{
 		$this->productImage->find($id)->delete();
 
-		return Redirect::route('productImages.index');
+		return Redirect::route('cms.products.show', Input::get('product_id'));
 	}
 
 }

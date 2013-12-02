@@ -36,7 +36,7 @@ Route::group(array('prefix' => 'cms'), function() {
 	Route::resource('customers', '\cms\CustomersController');
 	Route::post('products/{id}/upload-images' , array('uses' => '\cms\ProductsController@uploadImages' ,'as' => 'products.upload-images'));
 	Route::resource('products', '\cms\ProductsController');
-	Route::resource('products.productimages', 'ProductimagesController');
+	Route::resource('product-images', 'ProductImagesController');
 
 	Route::resource('collections', '\cms\CollectionsController');
 	Route::resource('categories', '\cms\CategoriesController');

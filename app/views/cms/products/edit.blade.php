@@ -24,19 +24,19 @@
 </div>
 
 <div class="control-group">
-			{{ Form::label('image', 'Image:', array('class'=>'control-label')) }}
+			{{ Form::label('image', 'Primary image:', array('class'=>'control-label')) }}
 	<div class="controls">
-			{{ Form::text('image', $product->image) }}
-			
-			<input type="file" name="image" id="">
+
+			<input type="file" name="image" id=""> <br/>
+			<img src="{{asset('uploads/products/'.$product->image);}}" width="200" alt="">
+			{{$product->image}}
 	</div>
 </div>
 	
 
-	
 
-			<div id="fileInput" class="btn btn-large btn-primary">
-			drag here
+			<div id="fileInput" class="well dropzone">
+				<h3>Drag the rest of the images of your product here</h3>
 			</div>
 	
 
@@ -100,7 +100,9 @@
 <div class="control-group">
 			{{ Form::label('premium', 'Premium:', array('class'=>'control-label')) }}
 	<div class="controls">
-			{{ Form::text('premium', $product->premium) }}
+			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
+			    <input type="checkbox" @if($product->premium) checked="checked"  @endif name="premium" value="1">
+			</div>
 	</div>
 </div>
 
@@ -108,7 +110,9 @@
 <div class="control-group">
 			{{ Form::label('published', 'Published:', array('class'=>'control-label')) }}
 	<div class="controls">
-			{{ Form::text('published', $product->published) }}
+			<div class="make-switch switch-small"  data-on-label="YES" data-off-label="NO">
+			    <input type="checkbox" @if($product->published) checked="checked"  @endif name="published" value="1">
+			</div>
 	</div>
 </div>
 	

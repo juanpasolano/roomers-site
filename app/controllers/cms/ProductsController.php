@@ -45,22 +45,24 @@ class ProductsController extends \BaseController {
 	 */
 	public function store()
 	{
-
-
 		$file = \Input::file('image');
-		$destinationPath = 'uploads/products/';
-		$filename = $file->getClientOriginalName();
-		$uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
+		$productData = \Input::all();
+		unset($productData['image']);
+		if($file){
+			$destinationPath = 'uploads/products/';
+			$filename = $file->getClientOriginalName();
+			$uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
+			$productData['image'] = $filename;
+		}
 
 		// if( $uploadSuccess ) {
 		//    return \Response::json('success', 200);
 		// } else {
 		//    return \Response::json('error', 400);
 		// }
-
-		$productData = \Input::all();
+		if(!isset($productData['premium'])){ $productData['premium'] = 0;}
+		if(!isset($productData['published'])){ $productData['published'] = 0;}
 		unset($productData['categories']);
-		$productData['image'] = $filename;
 		$product =  new \Product($productData);
 		$product->save();
 		$product->categories()->sync(\Input::get('categories'));
@@ -108,6 +110,7 @@ class ProductsController extends \BaseController {
 	{
 		$file = \Input::file('image');
 		$productData = \Input::all();
+		unset($productData['image']);
 		if($file){
 			$destinationPath = 'uploads/products/';
 			$filename = $file->getClientOriginalName();
@@ -120,12 +123,11 @@ class ProductsController extends \BaseController {
 		// } else {
 		//    return \Response::json('error', 400);
 		// }
-
+		if(!isset($productData['premium'])){ $productData['premium'] = 0;}
+		if(!isset($productData['published'])){ $productData['published'] = 0;}
 		unset($productData['categories']);
 		$product = \Product::find($id);
-		
 		$product->update($productData);
-		
 
 		$product->categories()->sync(\Input::get('categories'));
 		

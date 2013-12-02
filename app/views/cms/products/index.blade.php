@@ -35,7 +35,7 @@
 							<a class="btn btn-mini" href="{{ URL::to('/cms/products/'.$product->id.'/edit'); }}">Edit</a>
 							<form action="{{ URL::to('/cms/products/'.$product->id); }}" method="POST">
 								<input type="hidden" name="_method" value="DELETE">
-								<input type="submit" value="Remove">
+								<input type="submit" value="Remove" class="btn btn-danger btn-mini">
 							</form>
 
 						</td>
