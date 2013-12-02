@@ -37,8 +37,8 @@ class CollectionsController extends \BaseController {
 	{
 		$collection =  new \Collection(\Input::all());
 		$collection->save();
-		// return \Redirect::to('cms/collections')->with('message', 'Product saved successfully!');
-		return \Response::json($collection,200);
+		 return \Redirect::to('cms/collections')->with('message', 'Product saved successfully!');
+		//return \Response::json($collection,200);
 	}
 
 	/**

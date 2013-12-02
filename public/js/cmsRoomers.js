@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 	$('.select2Multiple').select2();
 
-	$(document).on('submit', '#createProductForm', function(e){
+	/*$(document).on('submit', '#createProductForm', function(e){
 		// e.preventDefault();
 		var d = $(e.currentTarget).serializeObject();
 		console.log(d);
@@ -67,7 +67,7 @@ $(document).ready(function(){
 		})
 	});
 
-	/*$(document).on('submit', '#createCategoryForm', function(e){
+	$(document).on('submit', '#createCategoryForm', function(e){
 		e.preventDefault();
 		var d = $(e.currentTarget).serializeObject();
 		$(e.currentTarget).find('.loadMsg').show();
