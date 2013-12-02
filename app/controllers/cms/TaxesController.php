@@ -40,8 +40,8 @@ class TaxesController extends \BaseController {
 	{
 		$tax =  new \Tax(\Input::all());
 		$tax->save();
-		// return \Redirect::to('cms/taxes')->with('message', 'Product saved successfully!');
-		return \Response::json($tax,200);
+		return \Redirect::to('cms/taxes')->with('message', 'Product saved successfully!');
+		//return \Response::json($tax,200);
 	}
 
 	/**
@@ -63,7 +63,8 @@ class TaxesController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$tax = \Tax::find($id);
+		return \View::make('cms.taxes.edit', array('tax'=> $tax));
 	}
 
 	/**
@@ -74,7 +75,10 @@ class TaxesController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$taxData = \Input::all();
+		$tax = \Tax::find($id);
+		$tax->update($taxData);
+		return \Redirect::to('cms/taxes')->with('message', 'Tax updated!');
 	}
 
 	/**
@@ -85,7 +89,9 @@ class TaxesController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$tax = \Tax::find($id);
+		$tax->delete();
+		return \Redirect::to('cms/taxes')->with('message', 'Category deleted!');
 	}
 
 }

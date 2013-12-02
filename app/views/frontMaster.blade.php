@@ -32,22 +32,22 @@
 	<div class="logo"><img src="{{asset('img/headerLogo.png');}}" height="128" width="129" alt=""></div>
 	<nav class="header">
 		<ul>
-			<li class=""><a href="{{URL::to('/')}}">Home</a></li>
-			<li class=""><a href="{{URL::to('shop')}}">Shop</a></li>
+			<li class=""><a href="{{URL::to('/')}}">{{trans('messages.home')}}</a></li>
+			<li class=""><a href="{{URL::to('shop')}}">{{trans('messages.shop')}}</a></li>
 			<!-- <li><a href="">Premium products</a></li> -->
-			<li><a href="">About us</a></li>
-			<li><a href="">Services</a></li>
-			<li><a href="">Contact us</a></li>
+			<li><a href="">{{trans('messages.about')}}</a></li>
+			<li><a href="">{{trans('messages.services')}}</a></li>
+			<li><a href="">{{trans('messages.contact')}}</a></li>
 		</ul>
 	</nav>
 	<nav class="header header-fixed">
 		<ul>
-			<li class=""><a href="{{URL::to('/')}}">Home</a></li>
-			<li class=""><a href="{{URL::to('shop')}}">Shop</a></li>
+			<li class=""><a href="{{URL::to('/')}}">{{trans('messages.home')}}</a></li>
+			<li class=""><a href="{{URL::to('shop')}}">{{trans('messages.shop')}}</a></li>
 			<!-- <li><a href="">Premium products</a></li> -->
-			<li><a href="">About us</a></li>
-			<li><a href="">Services</a></li>
-			<li><a href="">Contact us</a></li>
+			<li><a href="">{{trans('messages.about')}}</a></li>
+			<li><a href="">{{trans('messages.services')}}</a></li>
+			<li><a href="">{{trans('messages.contact')}}</a></li>
 		</ul>
 	</nav>
 </header>
@@ -56,29 +56,29 @@
 	<div class="shown">
 	@if (Auth::check())
 		Hi,  {{Auth::user()->firstname}} {{Auth::user()->lastname}}<br>
-		<a href="{{action('UsersController@getUserDetails' , Auth::user()->id)}}">Profile</a><br>
-		<a href="{{url('logout')}}">Sign out</a><br>
+		<a href="{{action('UsersController@getUserDetails' , Auth::user()->id)}}">{{trans('messages.cartWidget.profile')}}</a><br>
+		<a href="{{url('logout')}}">{{trans('messages.cartWidget.signOut')}}</a><br>
 	@endif
 		
 
 		<!-- You are not logged in<br> -->
 		@if(Auth::guest())
-		<a href="#loginModal" role="button" data-toggle="modal">Log in now</a><br>
-		<a href="{{action('UsersController@getRegister')}}">Create an account</a>
+		<a href="#loginModal" role="button" data-toggle="modal">{{trans('messages.cart.logIn')}}</a><br>
+		<a href="{{action('UsersController@getRegister')}}">{{trans('messages.cart.createAccount')}}</a>
 		@endif
 		<a href="#" class="cartBtn">{{Cart::totalItems()}} items</a><br>
 	</div>
 	<div class="hidden">
-		<a href="orderMake.php" class="btn btn-fucsia pull-right">Continue the purchase</a>
+		<a href="orderMake.php" class="btn btn-fucsia pull-right">{{trans('messages.cart.table.continue')}}</a>
 		<div class="separator"></div>
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Article</th>
+					<th>{{trans('messages.cart.table.article')}}</th>
 					<th>No</th>
-					<th>Price</th>
-					<th>Net</th>
-					<th>Options</th>
+					<th>{{trans('messages.cart.table.price')}}</th>
+					<th>{{trans('messages.cart.table.net')}}</th>
+					<th>{{trans('messages.cart.table.options')}}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -96,7 +96,7 @@
 				@endforeach
 				<tr>
 					<td colspan="2"></td>
-					<td>Gross total	</td>
+					<td>{{trans('messages.cart.table.gross')}}</td>
 					<td>{{Cart::total()}} €*</td>
 					<td></td>
 				</tr>
@@ -108,21 +108,21 @@
 <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="loginLabel">Login with your account</h3>
-    <h3 id="rocoverLabel" style="display:none">Recover your password</h3>
+    <h3 id="loginLabel">{{trans('messages.loginModal.title')}}</h3>
+    <h3 id="rocoverLabel" style="display:none">{{trans('messages.recoverModal.title')}}</h3>
   </div>
   <div class="modal-body">
   	<!--login-->
   	<form action="{{action('UsersController@postCustomerLogin')}}" class="form-horizontal" id="loginForm" method="POST">
   		<fieldset>
 				<div class="control-group">
-					<label class="control-label" for="email">Email</label>
+					<label class="control-label" for="email">{{trans('messages.loginModal.email')}}</label>
 					<div class="controls">
 						<input type="text" class="input-xlarge" id="email" name="email">
 					</div>
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="password">Password</label>
+					<label class="control-label" for="password">{{trans('messages.loginModal.pass')}}</label>
 					<div class="controls">
 						<input type="password" class="input-xlarge" id="password" type="password" name="password">
 					</div>
@@ -131,8 +131,8 @@
 					<!-- <label class="control-label" for="password">Password</label> -->
 					<div class="controls">
 						<!-- <input type="password" class="input-xlarge" id="password"> -->
-						<input type="submit" value="Log in" class="basicButton">or <a href="{{action('UsersController@getRegister')}}" class="basicButton">Create an account</a><br><br>
-						<a href="#" class="recoverBtn">Forgot your password?</a>
+						<input type="submit" value="{{trans('messages.loginModal.logIn')}}" class="basicButton">or <a href="{{action('UsersController@getRegister')}}" class="basicButton">{{trans('messages.loginModal.createAccount')}}</a><br><br>
+						<a href="#" class="recoverBtn">{{trans('messages.loginModal.forgot')}}</a>
 					</div>
 				</div>
   		</fieldset>
@@ -143,7 +143,7 @@
   	<form action="{{action('UsersController@postSendToken')}}" class="form-horizontal" style="display: none" id="recoverForm" method="POST">
   		<fieldset>
 				<div class="control-group">
-					<label class="control-label" for="email">Email</label>
+					<label class="control-label" for="email">{{trans('messages.recoverModal.email')}}</label>
 					<div class="controls">
 						<input type="text" class="input-xlarge" id="email" name="email" required>
 					</div>
@@ -152,8 +152,8 @@
 					<!-- <label class="control-label" for="password">Password</label> -->
 					<div class="controls">
 						<!-- <input type="password" class="input-xlarge" id="password"> -->
-						<input type="submit" value="Recover password" class="basicButton"><br><br>
-						<a href="#" class="loginBtn">You remembered your password.</a>
+						<input type="submit" value="{{trans('messages.recoverModal.btn')}}" class="basicButton"><br><br>
+						<a href="#" class="loginBtn">{{trans('messages.recoverModal.remember')}}</a>
 					</div>
 				</div>
   		</fieldset>
@@ -171,17 +171,17 @@
 			<img src="img/footerLogo.png" height="106" width="106" alt="	">
 		</div>
 		<div class="col50 centralCol">
-			<h2>Newsletter</h2>
-			<p>Subscribe to our newsletter to recieve the latest news and discounts</p>
+			<h2>{{trans('messages.newsletter')}}</h2>
+			<p>{{trans('messages.newsletterSub')}}</p>
 			<form action="" class="form">
 				<div class="input-append">
-				  <input class="input-xlarge" id="appendedInputButton" type="text" placeholder="Write your email here...">
+				  <input class="input-xlarge" id="appendedInputButton" type="text" placeholder="{{trans('messages.newsletterInput')}}">
 				  <button class="btn btn-magenta" type="button"><i class="icon-envelope"></i></button>
 				</div>
 			</form>
 		</div>
 		<div class="col25 rightCol">
-			<h2>Quick access</h2>
+			<h2>{{trans('messages.quick')}}</h2>
 			<ul>
 				<li><a href="">Store</a></li>
 				<li><a href="">News</a></li>

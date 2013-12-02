@@ -31,7 +31,7 @@ Route::group(array('prefix' => 'cms'), function() {
 	/*-----  End of auth routes  ------*/
 	
 	
-
+	Route::get('/', function(){ return Redirect::to('cms/login');});
 	Route::get('customers/{id}/orders', '\cms\CustomersController@getOrders');
 	Route::resource('customers', '\cms\CustomersController');
 	Route::post('products/{id}/upload-images' , array('uses' => '\cms\ProductsController@uploadImages' ,'as' => 'products.upload-images'));

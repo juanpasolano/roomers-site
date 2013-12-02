@@ -2,17 +2,6 @@
 
 return array(
 
-	/*
-	|--------------------------------------------------------------------------
-	| Pagination Language Lines
-	|--------------------------------------------------------------------------
-	|
-	| The following language lines are used by the paginator library to build
-	| the simple pagination links. You are free to change them to anything
-	| you want to customize your views to better match your application.
-	|
-	*/
-
 	'home' => 'Home',
 	'shop'     => 'Shop',
 	'about' => 'About us',
@@ -43,20 +32,22 @@ return array(
 
 
 	/*Floating cart*/
-	'hiName' => 'Hi, :name',
-	'profile' => 'profile',
-	'signOut' => 'Sign out',
-	'logIn' => 'Log in now',
-	'createAccount' => 'Create an account',
-	'cartTable' => Array(
-		'continue' => 'Continue with the purchase',
-		'article' => 'Article',
-		'price' => 'Price',
-		'net' => 'Net',
-		'options' => 'Options',
-		'tax' => 'Tax',
-		'gross' => 'Gross total',
-		'shipping' => 'Shipping'
+	'cart'=> array(
+		'hiName' => 'Hi, :name',
+		'profile' => 'Profile',
+		'signOut' => 'Sign out',
+		'logIn' => 'Log in now',
+		'createAccount' => 'Create an account',
+		'table' => Array(
+			'continue' => 'Continue with the purchase',
+			'article' => 'Article',
+			'price' => 'Price',
+			'net' => 'Net',
+			'options' => 'Options',
+			'tax' => 'Tax',
+			'gross' => 'Gross total',
+			'shipping' => 'Shipping'
+		)
 	),
 
 	/*LoginPop*/
@@ -64,6 +55,17 @@ return array(
 		'title'=> 'Login with your account',
 		'email' => 'Email',
 		'pass' => 'Password',
+		'forgot' =>'Forgot your password?',
+		'logIn' => 'Log in now',
+		'createAccount' => 'Create an account',
+	),
+	/*recover pop*/
+	'recoverModal' => Array(
+		'title'=> 'Recover your password',
+		'email' => 'Email',
+		'pass' => 'Passwort',
+		'btn' => 'Recover password',
+		'remember' => 'You remembered your password.'
 	),
 
 	/*Shop*/
@@ -106,7 +108,7 @@ return array(
 		'select' => 'Select other',
 
 		'payTit' => 'Payment options',
-		'paySub' => 'Please select the preferred payment method for your order.'
+		'paySub' => 'Please select the preferred payment method for your order.',
 		'payCash' => 'Cash on delivery',
 		'prepay' => 'Prepayment',
 		'payNote' => 'Be aware: If you choose paypal the shipping address would be the one you choose on paypal',
@@ -116,9 +118,5 @@ return array(
 		'accept' => 'I accept the'
 
 	)
-
-
-
-
 
 );

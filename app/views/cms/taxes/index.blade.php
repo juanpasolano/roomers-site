@@ -15,10 +15,13 @@
 					<tr>
 						<td>{{$tax->id}}</td>
 						<td>{{$tax->name}}</td>
-						<td>{{$tax->percentage}}</td>
+						<td>{{$tax->percentage}}%</td>
 						<td>
 							<a class="btn btn-mini" href="{{ URL::to('/cms/taxes/'.$tax->id.'/edit'); }}">Edit</a>
-							<a class="btn btn-mini btn-danger" method="DELETE" href="{{ URL::to('/cms/taxes/'.$tax->id); }}">Remove</a>
+							<form action="{{ URL::to('/cms/taxes/'.$tax->id); }}" method="POST" >
+								<input type="hidden" name="_method" value="DELETE">
+								<input type="submit" value="Remove" class="btn btn-mini btn-danger">
+							</form>
 						</td>
 					</tr>
 		@endforeach
@@ -27,7 +30,8 @@
 
 	<hr class="bs-docs-separator">
 	<div class="well span4">
-		<form action="#" class="form" id="createTaxForm">
+
+		<form action="{{URL::to('/cms/taxes/')}}" method="POST" class="form-horizontal">
 			<fieldset>
 				<legend>Create a new tax</legend>
 				<label for="name">Name</label>

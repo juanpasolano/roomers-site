@@ -1,10 +1,9 @@
 @extends('cmsMaster')
 @section('content')
 	<h1>Categories</h1>
-	<table class="table">
+	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<td>id</td>
 				<td>Name</td>
 				<td>Description</td>
 				<td>Actions</td>
@@ -13,9 +12,10 @@
 		<tbody>
 		@foreach($categories as $category)
 					<tr>
-						<td>{{$category->id}}</td>
-						<td>{{$category->name}}</td>
-						<td>{{$category->description}}</td>
+						<td><strong>EN: </strong>{{$category->name}}<br/>
+								<strong>DE: </strong>{{$category->name_de}}</td>
+						<td><strong>EN: </strong>{{$category->description}}<br/>
+								<strong>DE: </strong>{{$category->description_de}}</td>
 						<td>
 							<a class="btn btn-mini" href="{{ URL::to('/cms/categories/'.$category->id.'/edit'); }}">Edit</a>
 							<form action="{{ URL::to('/cms/categories/'.$category->id); }}" method="POST" >
@@ -29,17 +29,33 @@
 	</table>
 
 	<hr class="bs-docs-separator">
-	<div class="well span4">
-		<form action="{{URL::to('/cms/categories/')}}" method="POST" class="form" id="createCategoryForm">
+	<div class="well span8 form-quick">
+		<form action="{{URL::to('/cms/categories/')}}" method="POST" class="form-horizontal" id="createCategoryForm">
 			<fieldset>
 				<legend>Create a new category</legend>
-				<label for="name">Name</label>
-				<input type="text" class="input-xlarge " name="name" id="name">
-				<label for="description">Description</label>
-				<textarea name="description" id="description" cols="30" rows="5"></textarea>
+
+				<div class="control-group">
+					{{ Form::label('name', 'Name:', array('class'=>'control-label')) }}
+					<div class="controls">
+						{{ Form::text('name', '', array('class' => 'input input-midium en-flag')) }}
+						{{ Form::text('name_de', '', array('class' => 'input input-midium de-flag')) }}
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					{{ Form::label('description', 'Description:', array('class'=>'control-label')) }}
+					<div class="controls">
+						{{ Form::textarea('description', '', array('class' => 'input input-large en-flag')) }}
+						{{ Form::textarea('description_de', '', array('class' => 'input input-large de-flag')) }}
+					</div>
+				</div>
 				<hr class="bs-docs-separator">
-				<p class="loadMsg" style="display:none">Saving new category...</p>
-				<input type="submit" value="SAVE" class="btn btn-success">
+				<div class="control-group">
+					<div class="controls">
+						<input type="submit" value="Create Category" class="btn btn-success">
+					</div>
+				</div>
 			</fieldset>
 		</form>
 	</div>

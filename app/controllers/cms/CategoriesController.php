@@ -74,11 +74,11 @@ class CategoriesController extends \BaseController {
 	 */
 	public function update($id)
 	{
+
+		$categoryData = \Input::all();
 		$category = \Category::find($id);
-		$category->name = \Input::get('name');
-		$category->description = \Input::get('description');
-		$category->save();
-		return \Redirect::to('cms/categories')->with('message', 'CAtegory updated!');
+		$category->update($categoryData);
+		return \Redirect::to('cms/categories')->with('message', 'Category updated!');
 	}
 
 	/**

@@ -130,7 +130,7 @@ class ProductsController extends \BaseController {
 		$product->update($productData);
 
 		$product->categories()->sync(\Input::get('categories'));
-		
+
 
 		return \Redirect::to('cms/products')->with('message', 'Product saved successfully!');
 	}
@@ -157,7 +157,7 @@ class ProductsController extends \BaseController {
 		$filename = $file->getClientOriginalName();
 		//$extension =$file->getClientOriginalExtension(); //if you need extension of the file
 		$uploadSuccess = \Input::file('file')->move($destinationPath, $filename);
-		 
+
 		if( $uploadSuccess ) {
 
 			$image = new \ProductImage;

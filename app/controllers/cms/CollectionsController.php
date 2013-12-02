@@ -35,7 +35,16 @@ class CollectionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		$collection =  new \Collection(\Input::all());
+		$file = \Input::file('image');
+		$collectionData = \Input::all();
+		unset($collectionData['image']);
+		if($file){
+			$destinationPath = 'uploads/collections/';
+			$filename = $file->getClientOriginalName();
+			$uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
+			$collectionData['image'] = $filename;
+		}
+		$collection =  new \Collection($collectionData);
 		$collection->save();
 		 return \Redirect::to('cms/collections')->with('message', 'Product saved successfully!');
 		//return \Response::json($collection,200);
@@ -60,7 +69,8 @@ class CollectionsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$collection = \Collection::find($id);
+		return \View::make('cms.collections.edit', array('collection'=> $collection));
 	}
 
 	/**
@@ -71,7 +81,18 @@ class CollectionsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$file = \Input::file('image');
+		$collectionData = \Input::all();
+		unset($collectionData['image']);
+		if($file){
+			$destinationPath = 'uploads/collections/';
+			$filename = $file->getClientOriginalName();
+			$uploadSuccess = \Input::file('image')->move($destinationPath, $filename);
+			$collectionData['image'] = $filename;
+		}
+		$collection = \Collection::find($id);
+		$collection->update($collectionData);
+		return \Redirect::to('cms/collections')->with('message', 'Product saved successfully!');
 	}
 
 	/**
@@ -82,7 +103,9 @@ class CollectionsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$collection = \Collection::find($id);
+		$collection->delete();
+		return \Redirect::to('cms/collections')->with('message', 'Category deleted!');
 	}
 
 }

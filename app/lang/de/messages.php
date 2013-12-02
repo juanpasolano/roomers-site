@@ -2,17 +2,6 @@
 
 return array(
 
-	/*
-	|--------------------------------------------------------------------------
-	| Pagination Language Lines
-	|--------------------------------------------------------------------------
-	|
-	| The following language lines are used by the paginator library to build
-	| the simple pagination links. You are free to change them to anything
-	| you want to customize your views to better match your application.
-	|
-	*/
-
 	'home' => 'Haus',
 	'shop'     => 'Laden',
 	'about' => 'Über uns',
@@ -43,20 +32,22 @@ return array(
 
 
 	/*Floating cart*/
-	'hiName' => 'Hi, :name',
-	'profile' => 'Profil',
-	'signOut' => 'Austragen',
-	'logIn' => 'Einloggen',
-	'createAccount' => 'Account erstellen',
-	'cartTable' => Array(
-		'continue' => 'Fahren Sie mit der Kauf',
-		'article' => 'Artikel',
-		'price' => 'Preis',
-		'net' => 'Net',
-		'options' => 'Optionen',
-		'tax' => 'Tax',
-		'gross' => 'Bruttogesamt',
-		'shipping' => 'Versand'
+	'cart'=> array(
+		'hiName' => 'Hi, :name',
+		'profile' => 'Profil',
+		'signOut' => 'Austragen',
+		'logIn' => 'Einloggen',
+		'createAccount' => 'Account erstellen',
+		'table' => Array(
+			'continue' => 'Fahren Sie mit der Kauf',
+			'article' => 'Artikel',
+			'price' => 'Preis',
+			'net' => 'Net',
+			'options' => 'Optionen',
+			'tax' => 'Tax',
+			'gross' => 'Bruttogesamt',
+			'shipping' => 'Versand'
+		)
 	),
 
 	/*LoginPop*/
@@ -64,6 +55,17 @@ return array(
 		'title'=> 'Einloggen mit Ihrem Konto',
 		'email' => 'Email',
 		'pass' => 'Passwort',
+		'forgot' =>'Passwort vergessen?',
+		'logIn' => 'Einloggen',
+		'createAccount' => 'Account erstellen',
+	),
+	/*recover pop*/
+	'recoverModal' => Array(
+		'title'=> 'Gewinnen Sie Ihr Passwort',
+		'email' => 'Email',
+		'pass' => 'Passwort',
+		'btn' => 'Passwort vergessen',
+		'remember' => 'Sie erinnerte Ihr Passwort ein.'
 	),
 
 	/*Shop*/
@@ -105,7 +107,7 @@ return array(
 		'select' => 'Wählen Sie andere',
 
 		'payTit' => 'Zahlungsmöglichkeiten',
-		'paySub' => 'Bitte wählen Sie die bevorzugte Zahlungsmethode für Ihre Bestellung.'
+		'paySub' => 'Bitte wählen Sie die bevorzugte Zahlungsmethode für Ihre Bestellung.',
 		'payCash' => 'Nachnahme',
 		'prepay' => 'Vorauszahlung',
 		'payNote' => 'Achtung: Wenn Sie paypal wählen die Schifffahrts Adresse wäre die, die Sie auf paypal wählen',

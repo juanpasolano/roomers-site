@@ -1,6 +1,6 @@
 @extends('cmsMaster')
 @section('content')
-	
+
 	<h1>Categories</h1>
 
 	<h3>Edit category <span class="text-info">{{$category->name}}</span></h3>
@@ -12,14 +12,16 @@
 			<div class="control-group">
 			<label for="name" class="control-label">Name</label>
 				<div class="controls">
-					<input type="text" id="name" name="name" value="{{$category->name}}" class="input-block-level">
+					{{ Form::text('name', $category->name, array('class' => 'input input-large en-flag')) }}
+					{{ Form::text('name_de', $category->name_de, array('class' => 'input input-large de-flag')) }}
 				</div>
 			</div>
 
 			<div class="control-group">
 			<label for="description" class="control-label">Description</label>
 				<div class="controls">
-					<textarea type="text" class="input-block-level" rows="10" id="description" name="description">{{$category->description}}</textarea>
+			{{ Form::textarea('description', $category->description, array('class' => 'input input-large en-flag')) }}
+			{{ Form::textarea('description_de', $category->description_de, array('class' => 'input input-large de-flag')) }}
 				</div>
 			</div>
 

@@ -11,7 +11,7 @@ class OrdersTableSeeder extends Seeder {
 	{
 		\DB::table('orders')->delete();
 		\DB::table('orders')->insert(array (
-			0 => 
+			0 =>
 			array (
 				'id' => 1,
 				'user_id' => 1,
@@ -34,8 +34,8 @@ class OrdersTableSeeder extends Seeder {
 				'state' => '',
 				'country' => '',
 				'zone' => '',
-				'created_at' => '0000-00-00 00:00:00',
-				'updated_at' => '0000-00-00 00:00:00',
+				'created_at' => new DateTime,
+				'updated_at' => new DateTime,
 			),
 		));
 	}

@@ -33,7 +33,7 @@
 
 
 		<div class="homeCollections clearfix">
-			<h1>Latest Collections</h1>
+			<h1>{{trans('messages.latestCollection')}}</h1>
 
 
 			<!-- *********** -->
@@ -53,7 +53,7 @@
 
 		<div class="separatorDecor"></div>
 		<div class="premuim clearfix">
-			<h1>Featured Products</h1>
+			<h1>{{trans('messages.featureProduct')}}</h1>
 			@foreach($products as $product)
 				<div class="item">
 					<h2>{{$product->name}}</h2>

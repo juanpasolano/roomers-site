@@ -27,6 +27,34 @@
   -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
+.de-flag {
+  background: url(../img/flag-de.png) no-repeat top right #ffffff !important;
+}
+.en-flag {
+  background: url(../img/flag-en.png) no-repeat top right #ffffff !important;
+}
+.form-quick {
+  padding-top: 0;
+}
+.form-quick select,
+.form-quick textarea,
+.form-quick input[type="text"],
+.form-quick input[type="password"],
+.form-quick input[type="datetime"],
+.form-quick input[type="datetime-local"],
+.form-quick input[type="date"],
+.form-quick input[type="month"],
+.form-quick input[type="time"],
+.form-quick input[type="week"],
+.form-quick input[type="number"],
+.form-quick input[type="email"],
+.form-quick input[type="url"],
+.form-quick input[type="search"],
+.form-quick input[type="tel"],
+.form-quick input[type="color"],
+.form-quick .uneditable-input {
+  width: 200px !important;
+}
 .vidGallery {
   width: 100%;
   display: table;
