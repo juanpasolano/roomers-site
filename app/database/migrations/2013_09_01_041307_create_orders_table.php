@@ -14,30 +14,10 @@ class CreateOrdersTable extends Migration {
 	{
 		Schema::create('orders', function(Blueprint $table) {
 			$table->increments('id');
-			$table->integer('user_id');
-
-			$table->float('cart_total');
-			$table->float('taxes_total');
-			$table->float('bruto_total');
-			$table->float('grand_total');
-
-			$table->string('payment');
-			$table->string('status');
-			$table->string('paypal');
-
-			$table->string('firstname');
-			$table->string('lastname');
-			$table->string('phone');
-
-			$table->float('shipping_value');
-			$table->string('shipping_type');
-			$table->string('street');
-			$table->string('suburb');
-			$table->string('postcode');
-			$table->string('city');
-			$table->string('state');
-			$table->string('country');
-			$table->string('zone');
+			$table->integer('user_id')->unsigned();
+			$table->integer('address_id')->unsigned();
+			$table->integer('shipping_option')->unsigned();
+			$table->integer('payment_option')->unsigned();
 
 			$table->timestamps();
 		});

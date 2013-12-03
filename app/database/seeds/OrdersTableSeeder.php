@@ -9,35 +9,6 @@ class OrdersTableSeeder extends Seeder {
 	 */
 	public function run()
 	{
-		\DB::table('orders')->delete();
-		\DB::table('orders')->insert(array (
-			0 =>
-			array (
-				'id' => 1,
-				'user_id' => 1,
-				'cart_total' => 123,
-				'taxes_total' => 432,
-				'bruto_total' => 123,
-				'grand_total' => 423,
-				'payment' => '',
-				'status' => '',
-				'paypal' => '',
-				'firstname' => '',
-				'lastname' => '',
-				'phone' => '',
-				'shipping_value' => 0,
-				'shipping_type' => '',
-				'street' => '',
-				'suburb' => '',
-				'postcode' => '',
-				'city' => '',
-				'state' => '',
-				'country' => '',
-				'zone' => '',
-				'created_at' => new DateTime,
-				'updated_at' => new DateTime,
-			),
-		));
 	}
 
 }
