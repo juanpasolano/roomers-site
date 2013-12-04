@@ -56,10 +56,10 @@
 	<div class="shown">
 	@if (Auth::check())
 		Hi,  {{Auth::user()->firstname}} {{Auth::user()->lastname}}<br>
-		<a href="{{action('UsersController@getUserDetails' , Auth::user()->id)}}">{{trans('messages.cartWidget.profile')}}</a><br>
-		<a href="{{url('logout')}}">{{trans('messages.cartWidget.signOut')}}</a><br>
+		<a href="{{action('UsersController@getUserDetails' , Auth::user()->id)}}">{{trans('messages.cart.profile')}}</a><br>
+		<a href="{{url('logout')}}">{{trans('messages.cart.signOut')}}</a><br>
 	@endif
-		
+
 
 		<!-- You are not logged in<br> -->
 		@if(Auth::guest())
@@ -162,13 +162,13 @@
 </div>
 
 
-@yield('content');
+@yield('content')
 
 
 <footer>
 	<div class="wrapper clearfix">
 		<div class="col25 leftCol">
-			<img src="img/footerLogo.png" height="106" width="106" alt="	">
+			<img src="{{asset('img/footerLogo.png');}}" height="106" width="106" alt="	">
 		</div>
 		<div class="col50 centralCol">
 			<h2>{{trans('messages.newsletter')}}</h2>
@@ -202,7 +202,7 @@
 
 <script src="{{asset('js/jquery.js');}}"></script>
 <script src="{{asset('js/bootstrap.min.js');}}"></script>
-<script src="{{asset('js/backbone/underscore.js');}}"></script>a
+<script src="{{asset('js/backbone/underscore.js');}}"></script>
 <script src="{{asset('js/backbone/backbone.js');}}"></script>
 <script src="{{asset('js/backbone/handlebars.js');}}"></script>
 <script src="{{asset('js/roomers.js');}}"></script>

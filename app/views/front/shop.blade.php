@@ -9,6 +9,9 @@
 
 		<div class="rightContent">
 			<h1>{{$title}}</h1>
+			@if(isset($collection))
+				<p style="margin-top:20px">{{$collection->description}}</p>
+			@endif
 			<div class="itemsContainer clearfix">
 
 

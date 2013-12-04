@@ -1,6 +1,6 @@
 @extends('frontMaster')
 @section('content')
-		<div class="slider">
+		<div class="slider" id="homeSlider">
 		<div class="item active">
 			<img src="img/slider/1.jpg" height="335" width="1000" alt="name of slider">
 			<div class="infoBox">
@@ -51,6 +51,8 @@
 			@endforeach
 		</div>
 
+			<!-- *********** -->
+			<!-- PREMIUM PRODUCTS -->
 		<div class="separatorDecor"></div>
 		<div class="premuim clearfix">
 			<h1>{{trans('messages.featureProduct')}}</h1>
@@ -60,11 +62,16 @@
 					<div class="imgFrame"><img src="uploads/products/{{$product->image}}" height="250" width="440" alt="{{$product->name}}"></div>
 					<p>{{$product->description}}</p>
 					<div class="priceBox">
-						<span class="number">€{{$product->price}}</span>
-						<span class="txt">Each piece</span>
+						@if($product->discount != 0)
+							<span class="number">€{{$product->price-(($product->discount*$product->price)/100)}}</span>
+							<span class="before">€{{$product->price}}</span>
+						@else
+							<span class="number">€{{$product->price}}</span>
+						@endif
+							<span class="txt">Each piece</span>
 					</div>
 					<div class="btnsBox">
-						<a href="#" class="basicButton fr">More info</a>
+						<a href="{{URL::to('shop/product/'.$product->id)}}" class="basicButton fr">More info</a>
 						<a href="" data-id="{{$product->id}}" class="basicButton fr addToCartBtn">Add to cart</a>
 					</div>
 				</div>

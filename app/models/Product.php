@@ -24,4 +24,27 @@ class Product extends Eloquent {
 	{
 		return $this->hasMany('ProductImage' , 'product_id');
 	}
+	public function getNameAttribute($value)
+	{
+		switch (Session::get('lang', 'en')) {
+			case 'en':
+				return $this['attributes']['name'];
+				break;
+			case 'de':
+				return $this['attributes']['name_de'];
+				break;
+		}
+	}
+	public function getDescriptionAttribute($value)
+	{
+		switch (Session::get('lang', 'en')) {
+			case 'en':
+				return $this['attributes']['description'];
+				break;
+			case 'de':
+				return $this['attributes']['description_de'];
+				break;
+		}
+	}
+
 }

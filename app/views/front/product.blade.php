@@ -19,9 +19,13 @@
 				</div> -->
 
 				<div class="productSlider">
-					<div class="item">
-						<img src="assets/img/products/1b.jpg" height="420" width="750" alt="">
+					<div class="items">
+					@foreach($product->gallery as $image)
+						<img src="{{$image->url}}" alt="">
+					@endforeach
 					</div>
+					<a href="#" class="control next">Next</a>
+					<a href="#" class="control prev">Prev</a>
 				</div>
 
 				<h2>{{$product->name}}</h2>
@@ -41,6 +45,7 @@
 				<div class="col25 colCentral">
 					<div class="price">
 						<span class="number">€{{$product->price}}</span>
+						<span class="before"></span>
 						<span class="txt">Each piece</span>
 						<a href="" data-id="{{$product->id}}" class="basicButton addToCartBtn">Add to cart</a>
 					</div>

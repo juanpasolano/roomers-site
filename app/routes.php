@@ -24,13 +24,13 @@ Route::group(array('prefix' => 'cms'), function() {
 	/*===================================
 	=            auth routes            =
 	===================================*/
-	
+
 	Route::get('login' , array('uses' => 'UsersController@getCmsLogin', 'as' => 'login.enter'));
 	Route::post('login' , array('uses' => 'UsersController@postCmsLogin', 'as' => 'login.make'));
-	
+
 	/*-----  End of auth routes  ------*/
-	
-	
+
+
 	Route::get('/', function(){ return Redirect::to('cms/login');});
 	Route::get('customers/{id}/orders', '\cms\CustomersController@getOrders');
 	Route::resource('customers', '\cms\CustomersController');
@@ -95,7 +95,7 @@ Route::get('shop/collection/{id}', function($id){
 	$categories = Category::orderBy('updated_at', 'desc')->get()->all();
 
 	$collection = Collection::with('products')->get()->find($id);
-	return View::make('front.shop', array('products'=>$collection->products, 'title'=>$collection->name))
+	return View::make('front.shop', array('products'=>$collection->products, 'title'=>$collection->name, 'collection' => $collection))
 						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
 });
 
@@ -103,13 +103,13 @@ Route::get('shop/product/{id}', function($id){
 	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
 	$categories = Category::orderBy('updated_at', 'desc')->get()->all();
 
-	$product = Product::find($id);
+	$product = \Product::with('categories', 'collection')->get()->find($id);
 	return View::make('front.product', array('product'=>$product, 'title'=>$product->name))
 						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
 });
 
 
-
+/*POLICIES*/
 Route::group(array('prefix' => 'policies'), function() {
 	Route::get('terms', function(){
 		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
