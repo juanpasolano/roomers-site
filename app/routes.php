@@ -66,6 +66,7 @@ Route::group(array('prefix' => 'cms'), function() {
 ===================================*/
 
 Route::get('/', array('uses' => 'SiteController@index' , 'as' => 'site.front'));
+Route::get('set-locale/{lang}', array('uses' => 'SiteController@setLocale' , 'as' => 'site.langSwitch'));
 
 /*-----  End of rutas front  ------*/
 

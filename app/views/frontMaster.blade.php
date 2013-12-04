@@ -190,6 +190,8 @@
 				<li><a href="">Collections</a></li>
 				<li><a href="">Cotact us</a></li>
 				<li><a href="">Terms & conditions</a></li>
+				<li>{{link_to_route('site.langSwitch', 'view in english' , ['en'])}}</li>
+				<li>{{link_to_route('site.langSwitch', 'view in chechornia' , ['de'])}}</li>
 			</ul>
 		</div>
 	</div>
