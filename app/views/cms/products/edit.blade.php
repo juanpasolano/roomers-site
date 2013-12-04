@@ -24,6 +24,45 @@
 			{{ Form::textarea('description_de', $product->description_de, array('class' => 'input input-large de-flag')) }}
 		</div>
 	</div>
+	<div class="control-group">
+		{{ Form::label('dimensions', 'Dimensions:', array('class'=>'control-label')) }}
+		<div class="controls">
+
+			<div class="dimensionsBox">
+
+			@foreach($product->dimensions as $pr_dimension)
+					<div class="dimensionItem">
+
+						<select class="select input" name="dimensions_id[]">
+							@foreach ($dimensions as $dim)
+							<option value="{{$dim->id}}" <?php if($pr_dimension->pivot->dimension_id == $dim->id){echo 'selected';} ?> >{{$dim->name}} </option>
+							@endforeach
+						</select>
+
+						{{ Form::text('dimensions_value[]', $pr_dimension->pivot->value, array('class' => 'input input-midium')) }}
+
+						<a href="javascript:;" class="btn btn-mini btn-danger removeDimension">Remove</a>
+
+					</div>
+			@endforeach
+
+			</div>
+
+			<div class="dimensionItem dimensionClone" style="display:none">
+						<select class="select input" id="" name="">
+							@foreach ($dimensions as $dim)
+								<option value="{{$dim->id}}" >{{$dim->name}} </option>
+							@endforeach
+						</select>
+
+						{{ Form::text('', '', array('class' => 'input input-midium')) }}
+						<a href="javascript:;" class="btn btn-mini btn-danger removeDimension">Remove</a>
+			</div>
+
+			<a href="javascript:;" class="btn btn-success addDimension">Add new dimension</a>
+
+		</div>
+	</div>
 
 	<div class="control-group">
 		{{ Form::label('image', 'Primary image:', array('class'=>'control-label')) }}

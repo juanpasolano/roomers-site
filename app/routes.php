@@ -41,6 +41,7 @@ Route::group(array('prefix' => 'cms'), function() {
 	Route::resource('collections', '\cms\CollectionsController');
 	Route::resource('categories', '\cms\CategoriesController');
 	Route::resource('taxes', '\cms\TaxesController');
+	Route::resource('dimensions', '\cms\DimensionsController');
 });
 
 
@@ -103,7 +104,7 @@ Route::get('shop/product/{id}', function($id){
 	$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
 	$categories = Category::orderBy('updated_at', 'desc')->get()->all();
 
-	$product = \Product::with('categories', 'collection')->get()->find($id);
+	$product = \Product::with('categories', 'collection', 'dimensions')->get()->find($id);
 	return View::make('front.product', array('product'=>$product, 'title'=>$product->name))
 						->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));
 });

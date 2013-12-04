@@ -24,6 +24,32 @@
 		</div>
 	</div>
 
+		<div class="control-group">
+		{{ Form::label('dimensions', 'Dimensions:', array('class'=>'control-label')) }}
+		<div class="controls">
+
+			<div class="dimensionsBox">
+
+			</div>
+
+			<div class="dimensionItem dimensionClone" style="display:none">
+						<select class="select input" id="" name="">
+							@foreach ($dimensions as $dim)
+								<option value="{{$dim->id}}" >{{$dim->name}} </option>
+							@endforeach
+						</select>
+
+						{{ Form::text('', '', array('class' => 'input input-midium')) }}
+						<a href="javascript:;" class="btn btn-mini btn-danger removeDimension">Remove</a>
+			</div>
+
+			<a href="javascript:;" class="btn btn-success addDimension">Add new dimension</a>
+
+		</div>
+	</div>
+
+
+
 	<div class="control-group">
 		{{ Form::label('image', 'Primary image:', array('class'=>'control-label')) }}
 		<div class="controls">

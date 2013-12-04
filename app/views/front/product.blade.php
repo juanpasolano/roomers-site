@@ -17,16 +17,15 @@
 						<li>Name of product</li>
 					</ul>
 				</div> -->
-
-				<div class="productSlider">
-					<div class="items">
-					@foreach($product->gallery as $image)
-						<img src="{{$image->url}}" alt="">
-					@endforeach
+					<div class="productSlider">
+						<div class="items">
+						@foreach($product->gallery as $image)
+							<img src="{{$image->url}}" alt="">
+						@endforeach
+						</div>
+						<a href="#" class="control next">Next</a>
+						<a href="#" class="control prev">Prev</a>
 					</div>
-					<a href="#" class="control next">Next</a>
-					<a href="#" class="control prev">Prev</a>
-				</div>
 
 				<h2>{{$product->name}}</h2>
 
@@ -37,9 +36,10 @@
 				<div class="col25 colCentral">
 					<h3>Dimensions</h3>
 					<ul class="dimentions">
-						<li>Height: <span>3"</span></li>
-						<li>Width: <span>13"</span></li>
-						<li>Depth: <span>2"</span></li>
+
+						@foreach($product->dimensions as $dimension)
+						<li><strong>{{$dimension->name}}:</strong>  <span>{{$dimension->pivot->value}}</span></li>
+						@endforeach
 					</ul>
 				</div>
 				<div class="col25 colCentral">

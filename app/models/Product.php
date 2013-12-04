@@ -9,6 +9,10 @@ class Product extends Eloquent {
 	{
 		return $this->belongsToMany('Category');
 	}
+	public function dimensions()
+	{
+		return $this->belongsToMany('Dimension')->withPivot('value');
+	}
 
 	public function collection()
 	{

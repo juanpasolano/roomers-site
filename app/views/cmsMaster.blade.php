@@ -37,6 +37,7 @@
 					<li><a href="{{URL::to('cms/collections')}}">Collections</a></li>
 					<li><a href="{{URL::to('cms/categories')}}">Categories</a></li>
 					<li><a href="{{URL::to('cms/taxes')}}">Taxes</a></li>
+					<li><a href="{{URL::to('cms/dimensions')}}">Dimensions</a></li>
 				  <li class="nav-header">Customers and orders</li>
 					<li><a href="{{URL::to('cms/customers')}}">Customers</a></li>
 				  <li class="nav-header">Configurations</li>
