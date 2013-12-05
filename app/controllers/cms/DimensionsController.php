@@ -31,7 +31,9 @@ class DimensionsController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$dimension =  new \Dimension(\Input::all());
+		$dimension->save();
+		return \Redirect::to('cms/dimensions')->with('message', 'Dimension saved successfully!');
 	}
 
 	/**
@@ -53,7 +55,8 @@ class DimensionsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$dimension = \Dimension::find($id);
+		return \View::make('cms.dimensions.edit', array('dimension'=> $dimension));
 	}
 
 	/**
@@ -64,7 +67,10 @@ class DimensionsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$dimensionData = \Input::all();
+		$dimension = \Dimension::find($id);
+		$dimension->update($dimensionData);
+		return \Redirect::to('cms/dimensions')->with('message', 'Dimension updated!');
 	}
 
 	/**
@@ -75,7 +81,9 @@ class DimensionsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$dimension = \Dimension::find($id);
+		$dimension->delete();
+		return \Redirect::to('cms/dimensions')->with('message', 'Dimension deleted!');
 	}
 
 }

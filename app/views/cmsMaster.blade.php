@@ -32,7 +32,7 @@
 		<div class="span3">
 			<div class="well">
 				<ul class="nav nav-list">
-				  <li class="nav-header">Admin Products</li>
+				  <li class="nav-header">Products</li>
 					<li><a href="{{URL::to('cms/products')}}">Products</a></li>
 					<li><a href="{{URL::to('cms/collections')}}">Collections</a></li>
 					<li><a href="{{URL::to('cms/categories')}}">Categories</a></li>
@@ -40,11 +40,7 @@
 					<li><a href="{{URL::to('cms/dimensions')}}">Dimensions</a></li>
 				  <li class="nav-header">Customers and orders</li>
 					<li><a href="{{URL::to('cms/customers')}}">Customers</a></li>
-				  <li class="nav-header">Configurations</li>
-					<li><a href="{{URL::to('cms/taxes')}}">Taxes</a></li>
-					<ul>
-						<li><a href="">Jmmm</a></li>
-					</ul>
+					<li><a href="{{URL::to('cms/Orders')}}">Orders <span class="label label-warning">3</span></a></li>
 				</ul>
 			</div>
 		</div>

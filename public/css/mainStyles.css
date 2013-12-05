@@ -667,6 +667,12 @@ nav.shopNavigation ul li a:after {
   font-size: 2em;
   color: #3fb8af;
 }
+.rightContent .productDetailBox .price .before {
+  text-decoration: line-through;
+  color: #adadad;
+  font-size: 1.5em;
+  margin-top: -10px;
+}
 .rightContent .productDetailBox .price span.txt {
   margin-top: -5px;
 }

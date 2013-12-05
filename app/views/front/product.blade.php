@@ -44,8 +44,12 @@
 				</div>
 				<div class="col25 colCentral">
 					<div class="price">
-						<span class="number">€{{$product->price}}</span>
-						<span class="before"></span>
+						@if($product->discount != 0)
+							<span class="number">€{{$product->price-(($product->discount*$product->price)/100)}}</span>
+							<span class="before">€{{$product->price}}</span>
+						@else
+							<span class="number">€{{$product->price}}</span>
+						@endif
 						<span class="txt">Each piece</span>
 						<a href="" data-id="{{$product->id}}" class="basicButton addToCartBtn">Add to cart</a>
 					</div>
