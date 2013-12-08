@@ -20,8 +20,9 @@
 	<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700|Arapey:400italic,400' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,700' rel='stylesheet' type='text/css'>
 
-<link href="{{asset('css/bootstrap.css');}}" rel="stylesheet">
-<link href="{{asset('css/mainStyles.css');}}" rel="stylesheet">
+	<link href="{{asset('css/bootstrap.css');}}" rel="stylesheet">
+	<link href="{{asset('css/mainStyles.css');}}" rel="stylesheet">
+	<link href="{{asset('css/validationEngine.jquery.css');}}" rel="stylesheet">
 
 
 
@@ -206,6 +207,8 @@
 <script src="{{asset('js/backbone/backbone.js');}}"></script>
 <script src="{{asset('js/backbone/handlebars.js');}}"></script>
 <script src="{{asset('js/roomers.js');}}"></script>
+<script src="{{asset('js/jquery.validationEngine.js');}}"></script>
+<script src="{{asset('js/jquery.validationEngine-en.js');}}"></script>
 
 </body>
 </html>

@@ -17,6 +17,7 @@
 						<li>Name of product</li>
 					</ul>
 				</div> -->
+				@if(!$product->gallery->isEmpty())
 					<div class="productSlider">
 						<div class="items">
 						@foreach($product->gallery as $image)
@@ -26,6 +27,7 @@
 						<a href="#" class="control next">Next</a>
 						<a href="#" class="control prev">Prev</a>
 					</div>
+				@endif
 
 				<h2>{{$product->name}}</h2>
 

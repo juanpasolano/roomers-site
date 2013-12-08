@@ -1,43 +1,47 @@
 @extends('frontMaster')
 @section('content')
-	
+
 	     <div class="content clearfix">
 
         <div class="separatorDecor"></div>
 
-              
+        @yield('shopNav')
+
+
 
                 <div class="rightContent">
                         <h1>Create new account</h1>
                         <div class="separator"></div>
-                        <form class="form horizontal" action="{{action('UsersController@postRegister')}}" method="POST">
+                        <form class="form-horizontal" action="{{action('UsersController@postRegister')}}" method="POST">
                                 <fieldset>
                                         <div class="control-group">
                                                 <label class="control-label" for="fistname">* First name</label>
                                                 <div class="controls">
-                                                        <input type="text" class="input-xlarge" id="firstname" name="firstname">
+                                                    <input type="text" class="input-xlarge validate[required]" id="firstname" name="firstname">
                                                 </div>
                                         </div>
                                         <div class="control-group">
                                                 <label class="control-label" for="lastname">* Last name</label>
                                                 <div class="controls">
-                                                        <input type="text" class="input-xlarge" id="lastname" name="lastname">
+                                                    <input type="text" class="input-xlarge validate[required]" id="lastname" name="lastname">
                                                 </div>
                                         </div>
 
                                         <div class="control-group">
-                                                <label class="control-label" for="lastname">* Gender</label>
+                                                <label class="control-label" for="gender">* Gender</label>
                                                 <div class="controls">
-                                                <label for="">male</label>
-                                                       <input type="radio" name="gender" value="M">
-                                                <label for="">female</label>
-                                                       <input type="radio" name="gender" value="F">
+                                                    <label class="checkbox inline">
+                                                        <input type="checkbox" name="gender" value="M" checked> Male
+                                                    </label>
+                                                    <label class="checkbox inline">
+                                                        <input type="checkbox" name="gender" value="F"> Female
+                                                    </label>
                                                 </div>
                                         </div>
                                         <div class="control-group">
-                                                <label class="control-label" for="email">Email address</label>
+                                                <label class="control-label" for="email">* Email address</label>
                                                 <div class="controls">
-                                                        <input type="text" class="input-xlarge" id="phone" name="email">
+                                                        <input type="text" class="input-xlarge validate[required,custom[email]]" id="email" name="email">
                                                 </div>
                                         </div>
                                         <div class="control-group">
@@ -55,13 +59,13 @@
                                         <div class="control-group">
                                                 <label class="control-label" for="password">* Password</label>
                                                 <div class="controls">
-                                                        <input type="text" class="input-xlarge" id="password" name="password">
+                                                        <input type="password" class="input-xlarge validate[required]" id="password" name="password">
                                                 </div>
                                         </div>
                                         <div class="control-group">
                                                 <label class="control-label" for="password2">* Confirm Password</label>
                                                 <div class="controls">
-                                                        <input type="text" class="input-xlarge" id="password2" name="password2">
+                                                        <input type="password" class="input-xlarge validate[required]" id="password2" name="password2">
                                                 </div>
                                         </div>
                                         <div class="control-group">

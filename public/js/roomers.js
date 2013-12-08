@@ -14,6 +14,11 @@ $(document).ready(function(){
 		}
 	});
 
+
+	$(document).ready(function(){
+		$("form").validationEngine();
+	});
+
 	/*
 	|-----------------------------------------------------------------------------
 	| Slider

@@ -1,5 +1,12 @@
 @extends('frontMaster')
 @section('content')
+@if(Session::has('message'))
+<?php $message = Session::get('message')?>
+    <div class="alert {{$message['type']}} alert-fixed">
+		  <button type="button" class="close" data-dismiss="alert">&times;</button>
+		  {{$message['text']}}
+		</div>
+@endif
 		<div class="slider" id="homeSlider">
 		<div class="item active">
 			<img src="img/slider/1.jpg" height="335" width="1000" alt="name of slider">

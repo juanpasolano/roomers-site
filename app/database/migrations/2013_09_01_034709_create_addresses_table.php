@@ -16,6 +16,7 @@ class CreateAddressesTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id');
 			$table->boolean('is_default')->default(false);
+			$table->string('fullname');
 			$table->string('street');
 			$table->string('suburb');
 			$table->string('postcode');

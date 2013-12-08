@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 class SiteController extends BaseController {
-	
+
 	public function __construct()
 	{
 
@@ -27,7 +27,7 @@ class SiteController extends BaseController {
 				Session::put('lang', 'de');
 				return Redirect::back();
 				break;
-			
+
 			default:
 				# code...
 				break;

@@ -803,6 +803,12 @@ footer .wrapperBottom {
 | ADDITIONS TO BOOTSTRAP
 |-----------------------------------------------------------------------------
 */
+.alert-fixed {
+  position: fixed;
+  width: 80%;
+  top: 10px;
+  margin-left: 10%;
+}
 .btn {
   background-image: none !important;
   border: none !important;
