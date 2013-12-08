@@ -11,6 +11,11 @@ class Order extends Eloquent {
 		return $this->belongsTo('User');
 	}
 
+	public function items()
+	{
+		return $this->hasMany('OrderItem', 'order_id');
+	}
+
 
 	public static $SHIPPING_OPTIONS = array(
 			1 		=> 'FLAT',

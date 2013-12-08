@@ -14,9 +14,12 @@ class CreateOrderItemsTable extends Migration {
 	{
 		Schema::create('order_items', function(Blueprint $table) {
 			$table->integer('order_id')->unsigned();
-			$table->integer('product_id')->unsigned();
+			$table->string('product');
 			$table->integer('amount')->unsigned();
+			$table->float('unit_price');
 			$table->float('price');
+			$table->float('tax');
+			$table->string('tax_name');
 			$table->float('discount');
 			$table->timestamps();
 		});

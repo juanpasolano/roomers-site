@@ -66,6 +66,7 @@ Route::group(array('prefix' => 'cms'), function() {
 ===================================*/
 
 Route::get('/', array('uses' => 'SiteController@index' , 'as' => 'site.front'));
+Route::controller('purchase', 'OrderController');
 
 /*-----  End of rutas front  ------*/
 
@@ -171,18 +172,17 @@ Route::group(array('prefix' => 'policies'), function() {
 |-----------------------------------------------------------------------------
 */
 Route::post('cart/addItem/{id}', function($id){
-	$product = Product::find($id);
+	$product = Product::with('tax')->find($id);
 	$item = array(
-    'id' => $product->id,
-    'name' => $product->name,
-    'price' => $product->price,
-    'tax_id' => $product->tax_id,
-    'tax' => 10,
-    'quantity' => 1
+	    'id' => $product->id,
+	    'name' => $product->name,
+	    'price' => $product->price,
+	    'tax_percentage' => $product->tax->percentage,
+	    'tax_name' => $product->tax->name,
+	    'discount' => $product->discount,
+	    'quantity' => 1
 	);
 	Cart::insert($item);
-	// dd(Cart::total(false));
 	return Response::json(Cart::contents(true),200);
-	dd(Input::all());
 });
 

@@ -19,6 +19,9 @@ class CreateOrdersTable extends Migration {
 			$table->integer('shipping_option')->unsigned();
 			$table->integer('payment_option')->unsigned();
 
+			$table->float('bruto_total'); // no tax
+			$table->float('grand_total'); // tax
+
 			$table->timestamps();
 		});
 	}
