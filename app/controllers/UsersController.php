@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\DatabaseReminderRepository;
 class UsersController extends BaseController {
 
 	/**
-	 * DatabaseReminderRepository 
+	 * DatabaseReminderRepository
 	 *
 	 * @var reminders
 	 */
@@ -29,11 +29,11 @@ class UsersController extends BaseController {
 			'active'	=> true,
 		);
 
-		if (Auth::attempt($creds)) 
+		if (Auth::attempt($creds))
 		{
-			return Redirect::to('/');
+		return Redirect::to('/')->with('message' , array('text'=>'Welcome!', 'type'=>'alert-success'));
 		}
-		return Redirect::to('/')->with('message' , 'failed auth');
+		return Redirect::to('/')->with('message' , array('text'=>'We couldn\'t verify your credentials', 'type'=>'alert-error'));
 	}
 	public function getCmsLogin()
 	{
@@ -50,18 +50,20 @@ class UsersController extends BaseController {
 		);
 
 
-		if (Auth::attempt($creds)) 
+		if (Auth::attempt($creds))
 		{
-			
+
 			 return Redirect::to('cms/products');
 		}
-		
-		return Redirect::to('cms/login')->with('message' , 'credenciales invalidas');
+
+		return Redirect::to('cms/login')->with('message' , array('text'=>'Invalid credentials!', 'type'=>'alert-error'));
 	}
 
 	public function getRegister()
 	{
-		return View::make('users.create');
+		$collections = Collection::orderBy('updated_at', 'desc')->get()->all();
+		$categories = Category::orderBy('updated_at', 'desc')->get()->all();
+		return View::make('users.create')->nest('shopNav', 'front.shopNav', array('collections'=>$collections, 'categories'=>$categories));;
 	}
 
 	public function postRegister()
@@ -75,31 +77,31 @@ class UsersController extends BaseController {
 		$user->phone = Input::get('phone');
 		$user->fax = Input::get('fax');
 
-		try 
+		try
 		{
-			$user->save();	
+			$user->save();
 			$token = $user->getConfirmationToken();
 			$email = $user->getReminderEmail();
 			$this->sendMail($user->getReminderEmail(), Lang::get('users.mail.subject.confirm'), 'emails.auth.confirm', compact('token', 'email'));
-		} 
-		catch (Exception $e) 
+		}
+		catch (Exception $e)
 		{
 			dd($e->getMessage());
 			return 'error';
 		}
-		return 'ok';
+		return Redirect::to('/')->with('message' , array('text'=>'Your accuount has been created. Check your email to validate it', 'type'=>'alert-success'));
 	}
 
 	public function getConfirmAccount($email, $token)
 	{
 		$user = User::where('email', '=', $email)->first();
-		
-		if ($user->confirmAccount($token)) 
+
+		if ($user->confirmAccount($token))
 		{
 			Auth::login($user);
 			return Redirect::to('/');
 		}
-		return Redirect::to('/')->with('message' , 'validación fallida');
+		return Redirect::to('/')->with('message' , array('text'=>'Validation faild', 'type'=>'alert-error'));
 	}
 
 	public function postSendToken()
@@ -117,7 +119,7 @@ class UsersController extends BaseController {
 			{
 				return 'err';
 			}
-			return Redirect::to('/')->with('message', 'reset email sent');
+			return Redirect::to('/')->with('message' , array('text'=>'An email has been sent to recover your password.', 'type'=>'alert-success'));
 		}
 		return 'err';
 	}
@@ -130,10 +132,10 @@ class UsersController extends BaseController {
 	public function postResetPassword()
 	{
 
-			
+
 		$user = User::where('email', '=', Input::get('email'))->first();
 		$token = Input::get('token');
-		
+
 		if ($user)
 		{
 			$this->reminders->deleteExpired();
@@ -142,10 +144,10 @@ class UsersController extends BaseController {
 				$this->reminders->delete($token);
 				$user->password = Hash::make(Input::get('password'));
 				$user->save();
-				return Redirect::to('/')->with('message' , 'succesfull update');
+				return Redirect::to('/')->with('message' , array('text'=>'Your password has been reset.', 'type'=>'alert-success'));
 			}
 		}
-		return Redirect::to('/')->with('message' , 'couldn\'t reset password, please contact us');
+		return Redirect::to('/')->with('message' , array('text'=>'We couldn\'t reset your password.', 'type'=>'alert-error'));
 	}
 
 
@@ -156,7 +158,7 @@ class UsersController extends BaseController {
 		{
 			$user->fill(Input::all());
 			$user->save();
-		}	
+		}
 		return 'err';
 	}
 

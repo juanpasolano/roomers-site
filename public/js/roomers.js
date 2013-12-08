@@ -14,13 +14,18 @@ $(document).ready(function(){
 		}
 	});
 
+
+	$(document).ready(function(){
+		$("form").validationEngine();
+	});
+
 	/*
 	|-----------------------------------------------------------------------------
 	| Slider
 	|-----------------------------------------------------------------------------
 	*/
 
-	$('.next').on('click', function(e){
+	$('#homeSlider .next').on('click', function(e){
 		e.preventDefault();
 		var slider = $(this).closest('.slider');
 		var numofSldies = slider.find('.item').length;
@@ -41,7 +46,7 @@ $(document).ready(function(){
 		console.log(slider.find('.item').eq(nextActiveIndex));
 	});
 
-	$('.prev').on('click', function(e){
+	$('#homeSlider .prev').on('click', function(e){
 		e.preventDefault();
 		var slider = $(this).closest('.slider');
 		var numofSldies = slider.find('.item').length;
@@ -60,6 +65,36 @@ $(document).ready(function(){
 		slider.find('.item').eq(nextActiveIndex).css('z-index', 1);
 		slider.find('.item').eq(nextActiveIndex).addClass('active');
 		console.log(slider.find('.item').eq(nextActiveIndex));
+	});
+
+
+	/*
+	|-----------------------------------------------------------------------------
+	| PRODUCT SLIDER
+	|-----------------------------------------------------------------------------
+	*/
+	var prodImgNum = $('.productSlider img').length;
+	var currentProdImg = 0;
+	$('.productSlider img').eq(currentProdImg).addClass('show');
+	$(document).on('click', '.productSlider .next', function(e){
+		e.preventDefault();
+		$('.productSlider img').eq(currentProdImg).removeClass('show');
+		if(currentProdImg == prodImgNum-1){
+			currentProdImg = 0;
+		}else{
+			currentProdImg++;
+		}
+		$('.productSlider img').eq(currentProdImg).addClass('show');
+	});
+	$(document).on('click', '.productSlider .prev', function(e){
+		e.preventDefault();
+		$('.productSlider img').eq(currentProdImg).removeClass('show');
+		if(currentProdImg == 0){
+			currentProdImg = prodImgNum-1;
+		}else{
+			currentProdImg--;
+		}
+		$('.productSlider img').eq(currentProdImg).addClass('show');
 	});
 
 	/*

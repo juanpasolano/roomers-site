@@ -5,7 +5,7 @@
 	<h2 class="text-info">{{$product->name}}</h2>
 
 		<h3>General information</h3>
-					
+
 					<form action="{{ URL::to('/cms/products/'.$product->id); }}" method="POST">
 					<a class="btn btn-primary" href="{{ URL::to('/cms/products/'.$product->id.'/edit'); }}">Edit</a>
 						<input type="hidden" name="_method" value="DELETE">
@@ -25,6 +25,14 @@
 				<tr>
 					<td><strong>Description</strong></td>
 					<td>{{$product->description}}</td>
+				</tr>
+				<tr>
+					<td><strong>Dimensions</strong></td>
+					<td>
+						@foreach($product->dimensions as $dimension)
+							<strong>{{$dimension->name}}:</strong> {{$dimension->pivot->value}} <br/>
+						@endforeach
+					</td>
 				</tr>
 				<tr>
 					<td><strong>Price</strong></td>

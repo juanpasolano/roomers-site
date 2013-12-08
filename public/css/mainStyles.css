@@ -450,6 +450,12 @@ nav.header-fixed.shown {
   font-size: 2em;
   color: #ef2e89;
 }
+.premuim .item .priceBox .before {
+  text-decoration: line-through;
+  color: #adadad;
+  font-size: 1.5em;
+  margin-top: -10px;
+}
 .premuim .item .btnsBox {
   width: 50%;
   margin-top: 18px;
@@ -464,8 +470,9 @@ nav.shopNavigation {
   width: 22%;
   margin-right: 3%;
   float: left;
-  transition: all 0.3s ease-in-out;
-  -webkit-transition: all 0.3s ease-in-out;
+  /*transition: all 0.3s ease-in-out ;
+	-webkit-transition: all 0.3s ease-in-out ;*/
+
 }
 nav.shopNavigation .searchForm {
   background: #e3e3e3;
@@ -611,12 +618,35 @@ nav.shopNavigation ul li a:after {
   overflow: hidden;
   position: relative;
 }
-.rightContent .productDetailBox .productSlider .item {
+.rightContent .productDetailBox .productSlider .items {
   position: absolute;
+  width: 100%;
+  height: 420px;
 }
-.rightContent .productDetailBox .productSlider .item img {
+.rightContent .productDetailBox .productSlider .items img {
   width: 100%;
   height: auto;
+  position: absolute;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+}
+.rightContent .productDetailBox .productSlider .items img.show {
+  opacity: 1;
+}
+.rightContent .productDetailBox .productSlider .control {
+  position: absolute;
+  bottom: 20px;
+  z-index: 20;
+  background: white;
+  padding: 10px 10px 10px 20px;
+  color: #606060;
+}
+.rightContent .productDetailBox .productSlider .control.prev {
+  left: 0;
+}
+.rightContent .productDetailBox .productSlider .control.next {
+  right: 0;
 }
 .rightContent .productDetailBox .colCentral {
   padding: 0 0 0 4%;
@@ -636,6 +666,12 @@ nav.shopNavigation ul li a:after {
   text-align: right;
   font-size: 2em;
   color: #3fb8af;
+}
+.rightContent .productDetailBox .price .before {
+  text-decoration: line-through;
+  color: #adadad;
+  font-size: 1.5em;
+  margin-top: -10px;
 }
 .rightContent .productDetailBox .price span.txt {
   margin-top: -5px;
@@ -767,6 +803,12 @@ footer .wrapperBottom {
 | ADDITIONS TO BOOTSTRAP
 |-----------------------------------------------------------------------------
 */
+.alert-fixed {
+  position: fixed;
+  width: 80%;
+  top: 10px;
+  margin-left: 10%;
+}
 .btn {
   background-image: none !important;
   border: none !important;

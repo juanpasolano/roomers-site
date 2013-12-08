@@ -17,12 +17,17 @@
 						<li>Name of product</li>
 					</ul>
 				</div> -->
-
-				<div class="productSlider">
-					<div class="item">
-						<img src="assets/img/products/1b.jpg" height="420" width="750" alt="">
+				@if(!$product->gallery->isEmpty())
+					<div class="productSlider">
+						<div class="items">
+						@foreach($product->gallery as $image)
+							<img src="{{$image->url}}" alt="">
+						@endforeach
+						</div>
+						<a href="#" class="control next">Next</a>
+						<a href="#" class="control prev">Prev</a>
 					</div>
-				</div>
+				@endif
 
 				<h2>{{$product->name}}</h2>
 
@@ -33,14 +38,20 @@
 				<div class="col25 colCentral">
 					<h3>Dimensions</h3>
 					<ul class="dimentions">
-						<li>Height: <span>3"</span></li>
-						<li>Width: <span>13"</span></li>
-						<li>Depth: <span>2"</span></li>
+
+						@foreach($product->dimensions as $dimension)
+						<li><strong>{{$dimension->name}}:</strong>  <span>{{$dimension->pivot->value}}</span></li>
+						@endforeach
 					</ul>
 				</div>
 				<div class="col25 colCentral">
 					<div class="price">
-						<span class="number">€{{$product->price}}</span>
+						@if($product->discount != 0)
+							<span class="number">€{{$product->price-(($product->discount*$product->price)/100)}}</span>
+							<span class="before">€{{$product->price}}</span>
+						@else
+							<span class="number">€{{$product->price}}</span>
+						@endif
 						<span class="txt">Each piece</span>
 						<a href="" data-id="{{$product->id}}" class="basicButton addToCartBtn">Add to cart</a>
 					</div>
